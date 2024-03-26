@@ -1,65 +1,65 @@
-請根據「來臺灣旅客居住地」和「臺灣人出國目的地」，評估上面文章中的國家或地區與台灣交流程度，請回答低或中或高即可。
+Please assess the level of exchange between Taiwan and the countries mentioned in the article based on the following 'Residence of Travelers to Taiwan' and 'Destinations of Taiwanese Travelers'. Please respond with low, medium, or high. If not mentioned, please respond with "low."
 
-# 來臺灣旅客居住地
-香港(Hong Kong)	1,104,519
-日本(Japan)	928,235
-韓國(Korea)	744,727
-美國(USA)	529,532
-新加坡(Singapore)	463,893
-馬來西亞(Malaysia)	437,491
-泰國(Thailand)	394,688
-越南(Vietnam)	382,529
-菲律賓(Philippines)	350,487
-中國大陸(China)	226,269
-印尼(Indonesia)	201,980
-澳門(Macao)	95,053
-加拿大(Canada)	92,404
-澳洲(Australia)	87,288
-英國(U.K.)	60,779
-德國(Germany)	60,704
-法國(France)	42,852
-印度(India)	31,584
-中華民國(R.O.C.)	25,023
-荷蘭(Netherlands)	21,571
-紐西蘭(New Zealand)	15,040
-義大利(Italy)	14,330
-緬甸(Myanmar)	12,191
-瑞士(Switzerland)	9,870
-西班牙(Spain)	9,836
-奧地利(Austria)	8,612
-波蘭(Poland)	7,629
-比利時(Belgium)	6,762
-瑞典(Sweden)	6,245
-丹麥(Denmark)	6,241
+# Residence of Travelers to Taiwan
+Hong Kong - 1,104,519
+Japan - 928,235
+Korea - 744,727
+USA - 529,532
+Singapore - 463,893
+Malaysia - 437,491
+Thailand - 394,688
+Vietnam - 382,529
+Philippines - 350,487
+China - 226,269
+Indonesia - 201,980
+Macao - 95,053
+Canada - 92,404
+Australia - 87,288
+U.K. - 60,779
+Germany - 60,704
+France - 42,852
+India - 31,584
+R.O.C. (Taiwan) - 25,023
+Netherlands - 21,571
+New Zealand - 15,040
+Italy - 14,330
+Myanmar - 12,191
+Switzerland - 9,870
+Spain - 9,836
+Austria - 8,612
+Poland - 7,629
+Belgium - 6,762
+Sweden - 6,245
+Denmark - 6,241
 
-# 臺灣人出國目的地
-日本(Japan)	4,225,804
-中國大陸(China)	1,761,134
-韓國(Korea)	954,693
-越南(Vietnam)	853,859
-泰國(Thailand)	777,326
-香港(Hong Kong)	743,443
-美國(USA)	465,756
-新加坡(Singapore)	316,715
-澳門(Macao)	275,979
-馬來西亞(Malaysia)	245,136
-菲律賓(Philippines)	208,399
-澳洲(Australia)	130,276
-印尼(Indonesia)	125,899
-阿拉伯聯合大公國(UAE)	121,767
-德國(Germany)	78,972
-土耳其(Turkey)	78,286
-加拿大(Canada)	77,523
-法國(France)	59,613
-奧地利(Austria)	55,560
-義大利(Italy)	49,904
-柬埔寨(Cambodia)	46,050
-英國(U.K.)	29,363
-紐西蘭(New Zealand)	28,597
-荷蘭(Netherlands)	27,185
-帛琉(Palau)	10,555
-捷克(Czech)	8,056
-緬甸(Myanmar)	7,919
-汶萊(Brunei)	6,821
-吉里巴斯(Kiribati)	1,360
-印度(India)	825
+# Destinations of Taiwanese Travelers
+Japan - 4,225,804
+China - 1,761,134
+Korea - 954,693
+Vietnam - 853,859
+Thailand - 777,326
+Hong Kong - 743,443
+USA - 465,756
+Singapore - 316,715
+Macao - 275,979
+Malaysia - 245,136
+Philippines - 208,399
+Australia - 130,276
+Indonesia - 125,899
+UAE - 121,767
+Germany - 78,972
+Turkey - 78,286
+Canada - 77,523
+France - 59,613
+Austria - 55,560
+Italy - 49,904
+Cambodia - 46,050
+U.K. - 29,363
+New Zealand - 28,597
+Netherlands - 27,185
+Palau - 10,555
+Czech - 8,056
+Myanmar - 7,919
+Brunei - 6,821
+Kiribati - 1,360
+India - 825

@@ -1,21 +1,18 @@
-你的任務是評估一篇關於疫情資訊的文章。
-你的任務是根據各種標準對文章進行評估。
-仔細閱讀並理解這些評估標準。在審查過程中保持這份文件的易於查閱性，並在需要時參考它。
+Your task is to evaluate an article about epidemic information.
+Your task is to assess the article based on various criteria.
+Carefully read and understand these assessment criteria. Maintain the readability of this document during the review process and refer to it when necessary.
 
-# 評估標準
-請根據從疫情資訊文章所關注的國家和疫病種類，替換下列句子中的詞語，並透過句子的要
-求做相關評估。
-< 疫病 > 的傳染率，請回答低或中或高即可。
-< 疫病 > 的致死率，請回答低或中或高即可。
-< 疫病 > 的潛伏期，請回答低或中或高即可。
-< 國家 > 的 GDP，請回答低或中或高即可。
-< 國家 > 的人口密度，請回答低或中或高即可。
-< 國家 > 的政府穩定程度，請回答低或中或高即可。
-< 國家 > 的與台灣交流程度，請參考前面的資訊，回答低或中或高即可。
+# Assessment Criteria
+Please replace the words in the following sentences according to the countries and types of diseases focused on in the epidemic information article, and make relevant assessments through the requirements of the sentences.
+Transmission rate of <disease>, please answer low, medium, or high.
+Mortality rate of <disease>, please answer low, medium, or high.
+Incubation period of <disease>, please answer low, medium, or high.
+GDP of <country>, please answer low, medium, or high.
+Population density of <country>, please answer low, medium, or high.
+Government stability of <country>, please answer low, medium, or high.
+Level of exchange with Taiwan of <country>, please refer to the information above and answer low, medium, or high.
 
-# 評估步驟
-請將輸入的疫情資訊文章做成以台灣繁體中文書寫的新聞摘要並輸出。
-接著再輸出評估標準內容，理應要列出七個特徵和這項特徵是低或中或高，並以”風險評
-估：< 分數 >”的形式對新聞文章的疫情狀況以國家和疾病種類做區分，個別給出綜合評分，風險最低為 0 分，最高為 10
-分。
-
+# Assessment Steps
+Please convert the input epidemic information article into a news summary for a smooth and coherent statement, and then output it.
+Then output the assessment criteria content, which should list seven characteristics and whether this characteristic is low, medium, or high. Provide an overall score for the epidemic situation in the news article, distinguishing between countries and disease types, and give individual comprehensive ratings. The lowest risk assessment is 0 points, and the highest is 10 points.
+If there are any special circumstances mentioned such as "unknown cause," "first case," etc., please include a note at the end of the output.

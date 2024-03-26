@@ -24,35 +24,56 @@ def input_API(api):
     genai.configure(api_key=GOOGLE_API_KEY)
     model = genai.GenerativeModel('gemini-pro')
 
+    try:
+        model.generate_content(
+        "test",
+        )
+        print("Set Gemini API sucessfully!!")
+    except:
+        print("There seems to be something wrong with your Gemini API. Please follow our demonstration in the slide to get a correct one.")
+
 # clear the conversation
 def reset() -> List:
     return []
 
 # call the model to generate
 def interact_summarization(trans:str, inter: str, prompt: str, article: str) -> List[Tuple[str, str]]:
+
+    # estimate "交流程度"
+    input = f"{article}\n\n{inter}"
+    interaction = model.generate_content(
+      input,
+      generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(interaction.text)
+
+    # generate the summary
+    input = f"Level of exchange with Taiwan of <country>: {interaction.text}\n\n{prompt}\n{article}"
+    response = model.generate_content(
+      input,
+      generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+          {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+          ]
+    )
+
     # translate the article into chinese
-    input = f"{trans}\n{article}"
+    input = f"{trans}\n{response.text}"
     trans_article = model.generate_content(
       input,
       generation_config=genai.types.GenerationConfig(temperature=0)
     )
 
-    # estimate "交流程度"
-    input = f"{trans_article}\n{inter}"
-    interaction = model.generate_content(
-      input,
-      generation_config=genai.types.GenerationConfig(temperature=0)
-    )
-    print(interaction.text)
-
-    # generate the summary
-    input = f"與臺灣交流程度\n{interaction.text}\n\n{prompt}\n{trans_article.text}"
-    response = model.generate_content(
-      input,
-      generation_config=genai.types.GenerationConfig(temperature=0)
-    )
-
-    return [(trans_article.text, response.text)]
+    return [(response.text, trans_article.text)]
 
 # copy chatbox content
 def copy_chatbox_content(chatbox_content):
