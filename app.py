@@ -3,7 +3,6 @@ import google.generativeai as genai
 from typing import List, Tuple
 import pyperclip
 
-# AIzaSyC_YXmg7dCWwNIuc04BGM-wWP08rd2VAME
 GOOGLE_API_KEY = ""
 model = None
 
