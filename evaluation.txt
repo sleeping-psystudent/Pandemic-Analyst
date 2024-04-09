@@ -1,24 +1,22 @@
 Your task is to evaluate an article about epidemic information.
-Your task is to assess the article based on various criteria.
 Carefully read and understand these assessment criteria. Maintain the readability of this document during the review process and refer to it when necessary.
 
 # Assessment Criteria
 Please replace the words in the following sentences according to the countries and types of diseases focused on in the epidemic information article, and make relevant assessments through the requirements of the sentences.
-Disease identification, please answer "Clinical syndrome is diagnostic", "A simple laboratory test is diagnostic", or "Advance or prolonged investigation is required for confirmatory diagnosis".
-Pathogen of <disease>, please answer "Others", "Bacterial", or "Viral".
-Reservoir of <disease>, please answer "Animal", "Environmental", or "Human".
-Basic reproductive number of <disease>, please answer "<1", "1.0–2.0", or ">2"
-Mode of transmission of <disease>, please answer "Vector borne or other animal borne", "Foodborne, waterborne and direct contact", or "Airborne or droplet".
-Mortality rate of <disease>, please answer low, medium, or high.
-Incubation period of <disease>, please answer low, medium, or high.
-GDP of <country>, please answer low, medium, or high.
-Population density of <country>, please answer low, medium, or high.
-Government stability of <country>, please answer low, medium, or high.
-Level of exchange with Taiwan of <country>, please refer to the information above and answer low, medium, or high.
+Please evaluate based on your understanding of the disease and the country, without referencing the content of the article.
+Indicate the diagnostic method for <disease>, where "Clinical syndrome is diagnostic" represents the lowest score, "A simple laboratory test is diagnostic" is the intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents the highest score on a scale of 1 to 10. Please provide the numerical score only.
+Indicate the pathogen type of <disease> as "Others," "Bacterial," or "Viral," with "Others" being the lowest score and "Viral" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
+Indicate the reservoir type of <disease> as "Animal," "Environmental," or "Human," with "Animal" being the lowest score and "Human" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
+Indicate the basic reproductive number of <disease> as "<1," "1.0–2.0," or ">2," with "<1" being the lowest score and ">2" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
+Indicate the mode of transmission of <disease> as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being the lowest score and "Airborne or droplet" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
+Mortality rate of <disease>, please indicate the mortality rate on a scale of 1 to 10, with 1 being the lowest and 10 being the highest.
+Incubation period of <disease>, please indicate the incubation period on a scale of 1 to 10, with 1 being the shortest and 10 being the longest.
+GDP of <country>, please indicate the GDP on a scale of 1 to 10, with 1 representing the wealthiest and 10 representing the poorest.
+Population density of <country>, please indicate the population density on a scale of 1 to 10, with 1 representing the sparsest and 10 representing the most crowded.
+Government stability of <country>, please indicate the level of peace and stability on a scale of 1 to 10, with 1 representing the most peaceful and 10 representing the most turbulent.
+Level of exchange with Taiwan of <country>, please refer to the information above and answer.
 
 # Assessment Steps
 Please convert the input epidemic information article into a news summary for a smooth and coherent statement, and then output it.
-Then output the assessment criteria content, which should list twelve characteristics.
-Remember, the wealthier and more stable a country, the better its ability to control epidemics, reducing the harm they cause. Conversely, higher levels of interaction between Taiwan and other countries indicate a greater likelihood of Taiwan being affected by the epidemic.
-Provide an overall score for the epidemic situation in the news article based on the generated assessment criteria content, distinguishing between countries and disease types, and give individual comprehensive ratings. The lowest risk assessment is 0 points, and the highest is 10 points.
+Then output the assessment criteria content, which should list eleven characteristics.
 If there are any special circumstances mentioned such as "unknown cause," "first case," etc., please include a note at the end of the output.

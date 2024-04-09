@@ -2,6 +2,7 @@ import gradio as gr
 import google.generativeai as genai
 from typing import List, Tuple
 import pyperclip
+import re
 
 GOOGLE_API_KEY = ""
 model = None
@@ -13,6 +14,8 @@ with open("interaction.txt", "r") as file:
     interact_risk = file.read()
 with open("evaluation.txt", "r") as file:
     eval_prompt = file.read()
+# with open("assessment.txt", "r") as file:
+#     assess_prompt = file.read()
 
 
 # update global api
@@ -37,6 +40,12 @@ def input_API(api):
 def reset() -> List:
     return []
 """
+
+# extract the numbers
+def extract(text):
+    pattern = r': (\d+)'
+    matches = list(map(int, re.findall(pattern, text)))
+    return sum(matches)
 
 # call the model to generate
 def interact_summarization(trans:str, inter: str, prompt: str, article: str) -> List[Tuple[str, str]]:
@@ -67,14 +76,30 @@ def interact_summarization(trans:str, inter: str, prompt: str, article: str) -> 
           ]
     )
 
+    """
+    # assess the situation by sum up the scores
+    input = f"{assess}\n{response.text}"
+    assessRISK = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+          {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+          ]
+    )
+    """
+
     # translate the article into chinese
-    input = f"{trans}\n\n{response.text}"
+    assessment=response.text+"\nRisk Score: "+str(extract(response.text))+"/110"
+    input = f"{trans}\n\n{assessment}"
     trans_article = model.generate_content(
       input,
       generation_config=genai.types.GenerationConfig(temperature=0)
     )
 
-    return [(response.text, trans_article.text)]
+    return [(assessment, trans_article.text)]
 
 # copy chatbox content
 def copy_chatbox_content(chatbox_content):
@@ -92,6 +117,7 @@ def main():
             gr.Markdown("# 疫情分析\n輸入一整篇新聞來製作摘要（不用刪去廣告沒關係）")
             prompt_textbox = gr.Textbox(label="Prompt", value=eval_prompt, visible=False)
             inter_textbox = gr.Textbox(label="Interaction", value=interact_risk, visible=False)
+            # assess_textbox = gr.Textbox(label="Assessment", value=assess_prompt, visible=False)
             trans_textbox = gr.Textbox(label="Translation", value=trans_prompt, visible=False)
             article_textbox = gr.Textbox(label="Article", interactive=True, placeholder="請在此輸入文章", value="")
 
