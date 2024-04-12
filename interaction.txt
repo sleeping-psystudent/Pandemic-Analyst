@@ -1,4 +1,4 @@
-Please assess the level of exchange between Taiwan and the countries mentioned in the article based on the following 'Residence of Travelers to Taiwan' and 'Destinations of Taiwanese Travelers'. Please indicate the level of interaction on a scale of 1 to 10, with 1 representing the weakest interaction and 10 representing the strongest. If not mentioned, please respond with "1."
+Please rate the countries mentioned in the article based on the following "Residence of Travelers to Taiwan" and "Destinations of Taiwanese Travelers." Please use a scale of 1 to 10, where 1 represents the lowest combined score of the two data points, and 10 represents the highest. If not mentioned, please respond with "1."
 
 # Residence of Travelers to Taiwan
 Hong Kong - 1,104,519
