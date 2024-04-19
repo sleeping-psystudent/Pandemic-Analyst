@@ -4,6 +4,7 @@ Carefully read and understand these assessment criteria. Maintain the readabilit
 # Assessment Criteria
 Please replace the words in the following sentences according to the countries and types of diseases focused on in the epidemic information article, and make relevant assessments through the requirements of the sentences.
 Please evaluate based on your understanding of the disease and the country, without referencing the content of the article.
+If there is no data available for a particular disease, you can refer to a similar category of disease. For example, for avian influenza H10N3, you can refer to avian influenza H1N1, but please indicate at the end of the document which disease it was referenced from. If the disease is unknown, please assign a score of 10.
 Indicate the diagnostic method for <disease>, where "Clinical syndrome is diagnostic" represents the lowest score, "A simple laboratory test is diagnostic" is the intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents the highest score on a scale of 1 to 10. Please provide the numerical score only.
 Indicate the pathogen type of <disease> as "Others," "Bacterial," or "Viral," with "Others" being the lowest score and "Viral" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
 Indicate the reservoir type of <disease> as "Animal," "Environmental," or "Human," with "Animal" being the lowest score and "Human" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
