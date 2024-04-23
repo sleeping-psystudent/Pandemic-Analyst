@@ -54,11 +54,202 @@ def extract(text):
     
     return total_score
 
+# extract country and disease
+def extract_country_disease(text):
+    parts = text.split('/')
+    
+    country = parts[0]
+    disease = parts[1]
+    
+    return country, disease
+
 # call the model to generate
 def interact_summarization(trans:str, inter: str, prompt: str, article: str) -> List[Tuple[str, str]]:
+    # find out "country" and "disease"
+    problem="""
+    Please identify the main countries mentioned in the article or the countries to which this region belongs, as well as the primary diseases mentioned.
+    Please output in the format "Country/Disease".
+    """
+    input = f"{article}\n\n{problem}"
+    country_disease = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    country, disease = extract_country_disease(country_disease.text)
+    print(country_disease.text)
+    print(country, disease)
 
-    # estimate "交流程度"
-    input = f"{article}\n\n{inter}"
+    # estimate "diagnostic method"
+    problem="""
+    Please mark the diagnostic method for the disease, where "Clinical syndrome is diagnostic" represents the lowest score, "A simple laboratory test is diagnostic" is the intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents the highest score on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    diagnostic = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(diagnostic.text)
+
+    # estimate "pathogen type"
+    problem="""
+    Please mark the pathogen type of the disease as "Others," "Bacterial," or "Viral," with "Others" being the lowest score and "Viral" being the highest, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    pathogen = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(pathogen.text)
+
+    # estimate "reservoir type"
+    problem="""
+    Please mark the reservoir type of the disease as "Animal," "Environmental," or "Human," with "Animal" being the lowest score and "Human" being the highest, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    reservoir = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(reservoir.text)
+
+    # estimate "basic reproductive number"
+    problem="""Please mark the basic reproductive number of the disease as "<1," "1.0–2.0," or ">2," with "<1" being the lowest score and ">2" being the highest, on a scale of 1 to 10 based on your own judgement.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    reproductive = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(reproductive.text)
+
+    # estimate "mode of transmission"
+    problem="""Please mark the mode of transmission of the disease as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being the lowest score and "Airborne or droplet" being the highest, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    transmission = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(transmission.text)
+
+    # estimate "mortality rate"
+    problem="""Please mark the mortality rate of the disease on a scale of 1 to 10 based on your own knowledge, with 1 being the lowest and 10 being the highest.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    mortality = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(mortality.text)
+
+    # estimate "incubation period"
+    problem="""Please mark the incubation period of the disease on a scale of 1 to 10 based on your own knowledge, with 1 being the shortest and 10 being the longest.
+    """
+    input = f"The name of disease: {disease}\n{problem}"
+    incubation = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(incubation.text)
+
+    # estimate "GDP"
+    problem="""Please indicate the GDP of the country on a scale of 1 to 10, with 1 representing the wealthiest and 10 representing the poorest.
+    """
+    input = f"{country}\n{problem}"
+    GDP = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(GDP.text)
+
+    # estimate "population density"
+    problem="""Please indicate the population density of the country on a scale of 1 to 10, with 1 representing the sparsest and 10 representing the most crowded.
+    """
+    input = f"{country}\n{problem}"
+    density = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(density.text)
+
+    # estimate "government stability"
+    problem="""Please indicate the level of peace and stability of the country on a scale of 1 to 10, with 1 representing the most peaceful and 10 representing the most turbulent.
+    """
+    input = f"{country}\n{problem}"
+    stability = model.generate_content(
+        input,
+        generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+            {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+            ]
+    )
+    print(stability.text)
+
+    # estimate "level of exchange"
+    input = f"{country}\n{inter}"
     interaction = model.generate_content(
         input,
         generation_config=genai.types.GenerationConfig(temperature=0),
