@@ -1,1 +1,1 @@
-Based on the text above, please assess the reliability of the following data and list your explanations line by line. If you feel that any scores need to be adjusted, please modify them and explain the reasons. Please enclose the revised version in triple quotes ("").
+You are now an epidemiologist and public health expert. After reading the article above to understand the situation, you need to provide comments on the following summary, highlighting what you think is well-written and areas that need improvement.

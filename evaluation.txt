@@ -1,28 +1,14 @@
 Your task is to evaluate an article about epidemic information.
-Carefully read and understand these assessment criteria. Maintain the readability of this document during the review process and refer to it when necessary.
 
 # Assessment Criteria
-Please replace the words in the following sentences according to the countries and types of diseases focused on in the epidemic information article, and make relevant assessments through the requirements of the sentences.
-Please evaluate based on your understanding of the disease and the country, without referencing the content of the article.
-If there is no data available for a particular disease, you can refer to a similar category of disease. For example, for avian influenza H10N3, you can refer to avian influenza H1N1, but please indicate at the end of the document which disease it was referenced from. If the disease is unknown, please assign a score of 10.
-Indicate the diagnostic method for <disease>, where "Clinical syndrome is diagnostic" represents the lowest score, "A simple laboratory test is diagnostic" is the intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents the highest score on a scale of 1 to 10. Please provide the numerical score only.
-Indicate the pathogen type of <disease> as "Others," "Bacterial," or "Viral," with "Others" being the lowest score and "Viral" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
-Indicate the reservoir type of <disease> as "Animal," "Environmental," or "Human," with "Animal" being the lowest score and "Human" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
-Indicate the basic reproductive number of <disease> as "<1," "1.0–2.0," or ">2," with "<1" being the lowest score and ">2" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
-Indicate the mode of transmission of <disease> as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being the lowest score and "Airborne or droplet" being the highest, on a scale of 1 to 10. Please provide the numerical score only.
-Mortality rate of <disease>, please indicate the mortality rate on a scale of 1 to 10, with 1 being the lowest and 10 being the highest.
-Incubation period of <disease>, please indicate the incubation period on a scale of 1 to 10, with 1 being the shortest and 10 being the longest.
-GDP of <country>, please indicate the GDP on a scale of 1 to 10, with 1 representing the wealthiest and 10 representing the poorest.
-Population density of <country>, please indicate the population density on a scale of 1 to 10, with 1 representing the sparsest and 10 representing the most crowded.
-Government stability of <country>, please indicate the level of peace and stability on a scale of 1 to 10, with 1 representing the most peaceful and 10 representing the most turbulent.
-Level of exchange with Taiwan of <country>, please refer to the information above and answer.
+{eleven}
 
 # Assessment Steps
 Please convert the input epidemic information article into a news summary for a smooth and coherent statement, and then output it.
 Then output the assessment criteria content, which should list eleven characteristics.
 If there are any special circumstances mentioned such as "unknown cause," "first case," etc., please include a note at the end of the output.
 
-Here is an abstract report, please write according to its format.
+Here is an abstract report, please write according to its markdown format.
 """
 # News Summary
 
@@ -33,17 +19,17 @@ The Public Health Agency of Canada has assessed the risk of measles outbreaks in
 
 # Assessment Criteria
 
-1. Diagnostic method: 10
-2. Pathogen type: 10
-3. Reservoir type: 10
-4. Basic reproductive number: 10
-5. Mode of transmission: 10
-6. Mortality rate: 10
-7. Incubation period: 10
-8. GDP of Canada: 1
-9. Population density of Canada: 10
-10. Government stability of Canada: 1
-11. Level of exchange with Taiwan of Canada: 4
+1. Diagnostic method for measles: 8
+2. Pathogen type of measles: 2
+3. Reservoir type of measles: 1
+4. Basic reproductive number of measles: 4
+5. Mode of transmission of measles: 3
+6. Mortality rate of measles: 7
+7. Incubation period of measles: 3
+8. GDP of Canada: 10
+9. Population density of Canada: 3
+10. Government stability of Canada: 0
+11. Level of exchange with Taiwan of Canada: 6
 
 # Special Circumstances
 
