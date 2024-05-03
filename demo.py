@@ -43,20 +43,11 @@ def input_API(api):
 def clear() -> List:
     return None
 
-"""
 # extract the numbers
 def extract(text):
-    pattern = r'Assessment Criteria(.*?)Special Circumstances'
-    matches = re.findall(pattern, text, re.DOTALL)
+    numbers = re.findall(r'\d+', text)
+    return numbers[0]
 
-    total_score = 0
-    for match in matches:
-        numbers = re.findall(r': (\d+)', match)
-        for num in numbers:
-            total_score += int(num)
-    
-    return total_score
-"""
 
 # extract country and disease
 def extract_country_disease(text):
@@ -91,8 +82,15 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(country, disease)
 
     # estimate "diagnostic method"
+    # problem=f"""
+    # Please mark the diagnostic method for {disease}, where "Clinical syndrome is diagnostic" represents a low score, "A simple laboratory test is diagnostic" is a intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents a high score on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # """
+    # problem=f"""
+    # Please mark the diagnostic method for {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
+    # """
     problem=f"""
-    Please mark the diagnostic method for {disease}, where "Clinical syndrome is diagnostic" represents a low score, "A simple laboratory test is diagnostic" is a intermediate score, and "Advanced or prolonged investigation is required for confirmatory diagnosis" represents a high score on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+Please rate the diagnostic difficulty of {disease} based on your judgement. "Clinical syndrome is diagnostic" corresponds to 1-3, "A simple laboratory test is diagnostic" corresponds to 4-6, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 7-9 on a scale of 1 to 10. Please provide the numerical score only.
+If {disease} is unknown, please give a score of 10.
     """
     diagnostic = model.generate_content(
         problem,
@@ -107,8 +105,15 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(diagnostic.text)
 
     # estimate "pathogen type"
+    # problem=f"""
+    # Please mark the pathogen type of {disease} as "Others," "Bacterial," or "Viral," with "Others" being a low score and "Viral" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # """
+    # problem=f"""
+    # Please mark the pathogen type of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
+    # """
     problem=f"""
-    Please mark the pathogen type of {disease} as "Others," "Bacterial," or "Viral," with "Others" being a low score and "Viral" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+Please rate the severity of the pathogen type of {disease} as "Others," "Bacterial," or "Viral," with "Others" receiving 1-3, "Bacterial" receiving 4-6, and "Viral" receiving 7-9, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+If {disease} is unknown, please give a score of 10.
     """
     pathogen = model.generate_content(
         problem,
@@ -123,8 +128,15 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(pathogen.text)
 
     # estimate "reservoir type"
+    # problem=f"""
+    # Please mark the reservoir type of {disease} as "Animal," "Environmental," or "Human," with "Animal" being a low score and "Human" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # """
+    # problem=f"""
+    # Please mark the reservoir type of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
+    # """
     problem=f"""
-    Please mark the reservoir type of {disease} as "Animal," "Environmental," or "Human," with "Animal" being a low score and "Human" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+Please rate the intimacy of the host with humans for {disease}, with "Animal" being 1-3, "Environmental" being 4-6, and "Human" being 7-9, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+If {disease} is unknown, please give a score of 10.
     """
     reservoir = model.generate_content(
         problem,
@@ -139,7 +151,13 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(reservoir.text)
 
     # estimate "basic reproductive number"
-    problem=f"""Please mark the basic reproductive number of {disease} as "less than one," "one to two," or "greater than two," with "less than one" receiving a lower numerical score and "greater than two" receiving a higher numerical score, on a scale of 1 to 10 based on your own judgement.
+    # problem=f"""Please mark the basic reproductive number of {disease} as "less than one," "one to two," or "greater than two," with "less than one" receiving a lower numerical score and "greater than two" receiving a higher numerical score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # """
+    # problem=f"""Please mark the basic reproductive number of {disease}on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
+    # """
+    problem=f"""
+Please rate the infectiousness of {disease} based on your judgement, marking the basic reproductive number of {disease} as "less than one," "one to two," or "greater than two," with "less than one" receiving 1-3 and "greater than two" receiving 7-9, on a scale of 1 to 10. Please provide the numerical score only.
+If {disease} is unknown, please give a score of 10.
     """
     reproductive = model.generate_content(
         problem,
@@ -154,7 +172,13 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(reproductive.text)
 
     # estimate "mode of transmission"
-    problem=f"""Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being a low score and "Airborne or droplet" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # problem=f"""Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being a low score and "Airborne or droplet" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+    # """
+    # problem=f"""Please mark the mode of transmission of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
+    # """
+    problem=f"""
+Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," and rate the ease of transmission, with "Vector-borne or other animal-borne" receiving 1-3 and "Airborne or droplet" receiving 7-9, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+If {disease} is unknown, please give a score of 10.
     """
     transmission = model.generate_content(
         problem,
@@ -169,7 +193,9 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(transmission.text)
 
     # estimate "mortality rate"
-    problem=f"""Please mark the mortality rate of {disease} on a scale of 1 to 10 based on your own knowledge, with 1 being the lowest and 10 being the highest.
+    problem=f"""
+Please mark the mortality rate of {disease} on a scale of 1 to 10 based on your own knowledge, with 1 being the lowest and 10 being the highest.
+If {disease} is unknown, please give a score of 10.
     """
     mortality = model.generate_content(
         problem,
@@ -184,7 +210,9 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     #print(mortality.text)
 
     # estimate "incubation period"
-    problem=f"""Please mark the incubation period of {disease} on a scale of 1 to 10 based on your own knowledge, with 1 being the shortest and 10 being the longest.
+    problem=f"""
+Please mark the incubation period of {disease} on a scale of 1 to 10 based on your own knowledge, with 1 being the shortest and 10 being the longest.
+If {disease} is unknown, please give a score of 10.
     """
     incubation = model.generate_content(
         problem,
@@ -259,19 +287,18 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
 
     global eleven
     eleven = f"""
-1. Diagnostic method for {disease}: {diagnostic.text}
-2. Pathogen type of {disease}: {pathogen.text}
-3. Reservoir type of {disease}: {reservoir.text}
-4. Basic reproductive number of {disease}: {reproductive.text}
-5. Mode of transmission of {disease}: {transmission.text}
-6. Mortality rate of {disease}: {mortality.text}
-7. Incubation period of {disease}: {incubation.text}
-8. GDP of {country}: {GDP.text}
-9. Population density of {country}: {density.text}
-10. Level of peace and stability of {country}: {stability.text}
-11. Level of exchange with Taiwan of {country}: {interaction.text}
+1. Diagnostic method for {disease}: {extract(diagnostic.text)}
+2. Pathogen type of {disease}: {extract(pathogen.text)}
+3. Reservoir type of {disease}: {extract(reservoir.text)}
+4. Basic reproductive number of {disease}: {extract(reproductive.text)}
+5. Mode of transmission of {disease}: {extract(transmission.text)}
+6. Mortality rate of {disease}: {extract(mortality.text)}
+7. Incubation period of {disease}: {extract(incubation.text)}
+8. GDP of {country}: {extract(GDP.text)}
+9. Population density of {country}: {extract(density.text)}
+10. Level of peace and stability of {country}: {extract(stability.text)}
+11. Level of exchange with Taiwan of {country}: {extract(interaction.text)}
 """
-    print(eleven)
     
     # generate the summary
     input = f"{prompt}\n{article}"
@@ -300,8 +327,8 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
     )
 
     # translate the article into chinese
-    total_score = int(diagnostic.text)+int(pathogen.text)+int(reservoir.text)+int(reproductive.text)+int(transmission.text)+int(mortality.text)+int(incubation.text)+int(GDP.text)+int(density.text)+int(stability.text)+int(interaction.text)
-    assessment=response.text+"\n"+assessRISK+"\n\nRisk Score: "+str(total_score)+"/110"
+    total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(incubation.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(interaction.text))
+    assessment=response.text+"\n\n"+assessRISK.text+"\n\nRisk Score: "+str(total_score)+"/110"
     input = f"{trans}\n\n{assessment}"
     trans_article = model.generate_content(
       input,
@@ -310,17 +337,37 @@ def interact_summarization(n:str, trans:str, inter: str, assess:str, prompt: str
 
     return [(assessment, trans_article.text)]
 
-def result_assessment() -> List[Tuple[str]]:
+def result_assessment() -> List[Tuple[str, str]]:
     global disease
     global country
     global eleven
 
-    return [(eleven)]
+    trans="""
+請將下面翻譯成通順的臺灣繁體中文，
+範例如下，請參考表格畫法將評估標準內容以表格呈現。
+# 評估標準
+| 評估項目 | 評分 |
+|---|---|
+| 肉毒桿菌傳播率 | 1 |
+| 肉毒桿菌死亡率 | 3 |
+| 肉毒桿菌潛伏期 | 7 |
+| 俄羅斯 GDP | 1 |
+| 伊爾庫茨克人口密度 | 3 |
+| 俄羅斯政府穩定性 | 9 |
+| 俄羅斯與台灣的交流程度 | 4 |
+"""
+
+    input = f"{trans}\n\n{eleven}"
+    trans_criteria = model.generate_content(
+      input,
+      generation_config=genai.types.GenerationConfig(temperature=0)
+    )
+
+    return [(eleven, trans_criteria.text)]
 
 # copy chatbox content
 def copy_chatbox_content(chatbox_content):
     pyperclip.copy(chatbox_content[-1][-1])
-    print("Chatbox content copied:", chatbox_content[-1][-1])
 
 def main():
 
