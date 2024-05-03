@@ -1,1 +1,4 @@
-You are now an epidemiologist and public health expert. After reading the article above to understand the situation, you need to provide comments on the following summary, highlighting what you think is well-written and areas that need improvement.
+You are now an epidemiologist and public health expert. Please provide the following for {disease}: The diagnostic method, the pathogen type, the reservoir type, the basic reproductive number, the mode of transmission, the mortality rate, and the incubation period.
+Please output in the following markdown format
+# Assessment Criteria:
+the content of your opinion

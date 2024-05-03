@@ -1,38 +1,10 @@
-Your task is to evaluate an article about epidemic information.
+Your task is to evaluate the following article about epidemic information. Please include the two sections: # News Summary and # Special Circumstances, and follow the format below.
 
-# Assessment Criteria
-{eleven}
-
-# Assessment Steps
+Assessment Steps:
+Please output in the following markdown format
+# News Summary
 Please convert the input epidemic information article into a news summary for a smooth and coherent statement, and then output it.
-Then output the assessment criteria content, which should list eleven characteristics.
+# Special Circumstances
 If there are any special circumstances mentioned such as "unknown cause," "first case," etc., please include a note at the end of the output.
 
-Here is an abstract report, please write according to its markdown format.
-"""
-# News Summary
 
-As of April 10, 2024, Canada has reported 55 measles cases in four provinces (British Columbia, Ontario, Quebec, and Saskatchewan). Fifteen new cases and two new reporting municipalities have been added since March 26, 2024.
-Montreal and Newmarket have confirmed community transmission, while Laval is suspected of having community transmission. Several other municipalities have reported cases but have not yet determined the transmission status.
-Merck and GlaxoSmithKline continue to report shortages of measles-containing vaccines due to increased global demand. The shortages are expected to end in May and August 2024 for Merck and have no estimated end date for GSK.
-The Public Health Agency of Canada has assessed the risk of measles outbreaks in Canada as high until the end of April, with a moderate likelihood of community transmission in the general population over the next few months.
-
-# Assessment Criteria
-
-1. Diagnostic method for measles: 8
-2. Pathogen type of measles: 2
-3. Reservoir type of measles: 1
-4. Basic reproductive number of measles: 4
-5. Mode of transmission of measles: 3
-6. Mortality rate of measles: 7
-7. Incubation period of measles: 3
-8. GDP of Canada: 10
-9. Population density of Canada: 3
-10. Government stability of Canada: 0
-11. Level of exchange with Taiwan of Canada: 6
-
-# Special Circumstances
-
-- Vaccine shortages due to increased global demand.
-- High risk of measles outbreaks in educational and healthcare settings and un- or under-vaccinated communities.
-"""
