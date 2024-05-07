@@ -97,7 +97,7 @@ def interact_summarization(trans:str, inter:str, assess:str, prompt: str, articl
     )
 
     # translate the article into chinese
-    assessment=response.text+"\n\n"+assessRISK.text+"\n\nRisk Score: "+str(total_score)+"/110"
+    assessment=response.text+"\n\n"+assessRISK.text+"\n\nRisk Score: "+str(total_score)+"/30"
     input = f"{trans}\n\n{assessment}"
     trans_article = model.generate_content(
       input,
@@ -144,7 +144,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         # problem=f"""
         # Please mark the diagnostic method for {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please rate the diagnostic difficulty of {disease} based on your judgement. "Clinical syndrome is diagnostic" corresponds to 1-3 points , "A simple laboratory test is diagnostic" corresponds to 4-6 points, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 7-9 points on a scale of 1 to 10. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. Please rate the diagnostic difficulty of {disease} based on your judgement. "Clinical syndrome is diagnostic" corresponds to 1 point , "A simple laboratory test is diagnostic" corresponds to 2 points, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 3 points. Please provide the numerical score only.
         """
         diagnostic = model.generate_content(
             problem,
@@ -165,7 +165,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         # problem=f"""
         # Please mark the pathogen type of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please rate the severity of the pathogen type of {disease} as "Others," "Bacterial," or "Viral," with "Others" receiving 1-3 points, "Bacterial" receiving 4-6 points, and "Viral" receiving 7-9 points, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. Please rate the severity of the pathogen type of {disease} as "Others," "Bacterial," or "Viral," with "Others" receiving 1 point, "Bacterial" receiving 2 points, and "Viral" receiving 3 points based on your own judgement. Please provide the numerical score only.
         """
         pathogen = model.generate_content(
             problem,
@@ -186,7 +186,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         # problem=f"""
         # Please mark the reservoir type of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please rate the intimacy of the host with humans for {disease}, with "Animal" being 1-3 points, "Environmental" being 4-6 points, and "Human" being 7-9 points, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. Please rate the intimacy of the host with humans for {disease}, with "Animal" being 1 point, "Environmental" being 2 points, and "Human" being 3 points based on your own judgement. Please provide the numerical score only.
         """
         reservoir = model.generate_content(
             problem,
@@ -205,7 +205,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         # """
         # problem=f"""Please mark the basic reproductive number of {disease}on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please rate the infectiousness of {disease} based on your judgement, marking the basic reproductive number of {disease} as "less than one," "one to two," or "greater than two," with "less than one" receiving 1-3 points and "greater than two" receiving 7-9 points, on a scale of 1 to 10. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. First, recall the basic reproductive number of {disease}, then rate the infectiousness of {disease} based on your judgement, marking the basic reproductive number of {disease} as "less than one," "one to two," or "greater than two," with "less than one" receiving 1 point, "one to two" receiving 2 points and "greater than two" receiving 3 points. Please provide the numerical score only.
         """
         reproductive = model.generate_content(
             problem,
@@ -217,14 +217,14 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
                 {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
                 ]
         )
-        #print(reproductive.text)
+        # print(reproductive.text)
 
         # estimate "mode of transmission"
         # problem=f"""Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," with "Vector-borne or other animal-borne" being a low score and "Airborne or droplet" being a high score, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
         # """
         # problem=f"""Please mark the mode of transmission of {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," and rate the ease of transmission, with "Vector-borne or other animal-borne" receiving 1-3 points and "Airborne or droplet" receiving 7-9 points, on a scale of 1 to 10 based on your own judgement. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. Please mark the mode of transmission of {disease} as "Vector-borne or other animal-borne," "Foodborne, waterborne, and direct contact," or "Airborne or droplet," and rate the ease of transmission, with "Vector-borne or other animal-borne" receiving 1 point, "Foodborne, waterborne, and direct contact" receiving 2 points and "Airborne or droplet" receiving 3 points, based on your own judgement. Please provide the numerical score only.
         """
         transmission = model.generate_content(
             problem,
@@ -239,7 +239,19 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         #print(transmission.text)
 
         # estimate "mortality rate"
-        problem=f"""You are now an epidemiologist and public health expert. Please mark the mortality rate of {disease} in humans on a scale of 1 to 10 based on your own knowledge, with 1 being the lowest and 10 being 100%.
+        problem=f"What is the mortality rate of {disease}?"
+        rate = model.generate_content(
+            problem,
+            generation_config=genai.types.GenerationConfig(temperature=0),
+            safety_settings=[
+                {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+                ]
+        )
+        # print(rate.text)
+        problem=f"""The mortality rate of {disease} is {rate.text}. If the mortality rate is less than 1 percent, please score 1 point; if it is between 1 to 5 percent, please score 2 points; if it is greater than 5 percent, please score 3 points. Please provide the numerical score only.
         """
         mortality = model.generate_content(
             problem,
@@ -251,25 +263,27 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
                 {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
                 ]
         )
-        #print(mortality.text)
+        # print(mortality.text)
 
-        # estimate "incubation period"
-        problem=f"""You are now an epidemiologist and public health expert. Please mark the incubation period of {disease} in humans on a scale of 1 to 10 based on your own knowledge, with 1 being the hours and 10 being years.
-        """
-        incubation = model.generate_content(
-            problem,
-            generation_config=genai.types.GenerationConfig(temperature=0),
-            safety_settings=[
-                {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
-                ]
-        )
-        #print(incubation.text)
+
+        # # estimate "incubation period"
+        # problem=f"""You are now an epidemiologist and public health expert. Please mark the incubation period of {disease} in humans on a scale of 1 to 10 based on your own knowledge, with 1 being the hours and 10 being years.
+        # """
+        # incubation = model.generate_content(
+        #     problem,
+        #     generation_config=genai.types.GenerationConfig(temperature=0),
+        #     safety_settings=[
+        #         {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+        #         ]
+        # )
+        # #print(incubation.text)
+
 
         # estimate "GDP"
-        problem=f"""Please indicate the GDP of {country} on a scale of 1 to 10, with 1 representing the wealthiest and 10 representing the poorest.
+        problem=f"""Please indicate the GDP of {country} on a scale of 1 to 3, with 1 representing the wealthiest and 3 representing the poorest.
         """
         GDP = model.generate_content(
             problem,
@@ -284,7 +298,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         #print(GDP.text)
 
         # estimate "population density"
-        problem=f"""Please indicate the population density of {country} on a scale of 1 to 10, with 1 representing the sparsest and 10 representing the most crowded.
+        problem=f"""Please indicate the population density of {country} on a scale of 1 to 3, with 1 representing the sparsest and 3 representing the most crowded.
         """
         density = model.generate_content(
             problem,
@@ -299,7 +313,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         #print(density.text)
 
         # estimate "government stability"
-        problem=f"""Please indicate the level of peace and stability of {country} on a scale of 1 to 10, with 1 representing the most peaceful and 10 representing the most turbulent.
+        problem=f"""Please indicate the level of peace and stability of {country} on a scale of 1 to 3, with 1 representing the most peaceful and 3 representing the most turbulent.
         """
         stability = model.generate_content(
             problem,
@@ -327,6 +341,21 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         )
         #print(interaction.text)
 
+    #     eleven = f"""
+    # 1. Diagnostic method for {disease}: {extract(diagnostic.text)}
+    # 2. Pathogen type of {disease}: {extract(pathogen.text)}
+    # 3. Reservoir type of {disease}: {extract(reservoir.text)}
+    # 4. Basic reproductive number of {disease}: {extract(reproductive.text)}
+    # 5. Mode of transmission of {disease}: {extract(transmission.text)}
+    # 6. Mortality rate of {disease}: {extract(mortality.text)}
+    # 7. Incubation period of {disease}: {extract(incubation.text)}
+    # 8. GDP of {country}: {extract(GDP.text)}
+    # 9. Population density of {country}: {extract(density.text)}
+    # 10. Level of peace and stability of {country}: {extract(stability.text)}
+    # 11. Level of exchange with Taiwan of {country}: {extract(interaction.text)}
+    # """
+    #     total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(incubation.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(interaction.text))
+
         eleven = f"""
     1. Diagnostic method for {disease}: {extract(diagnostic.text)}
     2. Pathogen type of {disease}: {extract(pathogen.text)}
@@ -334,19 +363,18 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
     4. Basic reproductive number of {disease}: {extract(reproductive.text)}
     5. Mode of transmission of {disease}: {extract(transmission.text)}
     6. Mortality rate of {disease}: {extract(mortality.text)}
-    7. Incubation period of {disease}: {extract(incubation.text)}
-    8. GDP of {country}: {extract(GDP.text)}
-    9. Population density of {country}: {extract(density.text)}
-    10. Level of peace and stability of {country}: {extract(stability.text)}
-    11. Level of exchange with Taiwan of {country}: {extract(interaction.text)}
+    7. GDP of {country}: {extract(GDP.text)}
+    8. Population density of {country}: {extract(density.text)}
+    9. Level of peace and stability of {country}: {extract(stability.text)}
+    10. Level of exchange with Taiwan of {country}: {extract(interaction.text)}
     """
-        total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(incubation.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(interaction.text))
+        total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(interaction.text))
 
         # translation
         trans="""
     請將下面翻譯成通順的臺灣繁體中文，
     範例如下，請參考表格畫法將評估標準內容以表格呈現。
-    # 評估標準
+    ## 評估分數
     | 評估項目 | 評分 |
     |---|---|
     | 肉毒桿菌傳播率 | 1 |
@@ -370,7 +398,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
 
 # copy chatbox content
 def copy_chatbox_content(chatbox_content, result_content):
-    pyperclip.copy(chatbox_content[-1][-1]+"\n"+result_content[-1][-1])
+    pyperclip.copy(f"# {disease} in {country}"+"\n"+chatbox_content[-1][-1]+"\n"+result_content[-1][-1])
 
 def main():
 

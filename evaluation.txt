@@ -1,6 +1,6 @@
-Your task is to evaluate the following article about epidemic information. Please include the two sections: # News Summary and # Special Circumstances, and follow the format below.
+Your task is to evaluate the following article about epidemic information. Please include the two sections: ## News Summary and ## Special Circumstances, and follow the format below.
 
 Assessment Steps:
-Please output in the following markdown format, don't forget to add a pound sign before "News Summary" and "Special Circumstances"
-# News Summary
+Please output in the following markdown format, don't forget to add pound signs before "News Summary" and "Special Circumstances"
+## News Summary
 Please convert the input epidemic information article into a news summary for a smooth and coherent statement, and then output it.
