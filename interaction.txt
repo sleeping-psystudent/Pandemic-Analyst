@@ -1,4 +1,6 @@
-Please rate {country} based on the following "Residence of Travelers to Taiwan" and "Destinations of Taiwanese Travelers." Please use a scale of 2 to 3, where 2 represents the lowest combined score of the two data points, and 3 represents the highest. If not mentioned, please respond with "1."
+The population of Taiwan is 23,416,375.
+Here is the data on "Residence of Travelers to Taiwan" and "Destinations of Taiwanese Travelers." Please review the level of exchange between {country} and Taiwan carefully.
+If {country} is not listed below, it means there has been no exchange in the past year.
 
 # Residence of Travelers to Taiwan
 Hong Kong - 1,104,519

@@ -96,9 +96,38 @@ def interact_summarization(trans:str, inter:str, assess:str, prompt: str, articl
           ]
     )
 
+    # judge the situation
+    # assessment=response.text+"\n\n"+assessRISK.text+"\n\nRisk Score: "+str(total_score)+"/33"
+    assessment=response.text+"\n\n"+assessRISK.text
+    input = f"""As a public health expert, based on the report below, do you believe the level of attention for this event should be categorized as "Watchlist," "Low," "Medium," or "High"? Why?\n\n{assessment}
+    """
+    judgement = model.generate_content(
+      input,
+      generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+          {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+          ]
+    )
+
+    # include TW
+    input = f"""{inter.format(country=country)}\n\nAs a public health expert, based on the information above and the following report, in your opinion, should the Taiwanese government's level of concern about this event be categorized as "Watchlist," "Low," "Medium," or "High"? Why?\n\n{response.text}
+    """
+    judgement_tw = model.generate_content(
+      input,
+      generation_config=genai.types.GenerationConfig(temperature=0),
+        safety_settings=[
+          {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+          {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+          ]
+    )    
+
     # translate the article into chinese
-    assessment=response.text+"\n\n"+assessRISK.text+"\n\nRisk Score: "+str(total_score)+"/30"
-    input = f"{trans}\n\n{assessment}"
+    input = f"{trans}\n\n{assessment}\n\n"+judgement.text+"\n\n"+judgement_tw.text
     trans_article = model.generate_content(
       input,
       generation_config=genai.types.GenerationConfig(temperature=0)
@@ -144,7 +173,7 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         # problem=f"""
         # Please mark the diagnostic method for {disease} on a scale of 1 to 10 based on your own knowledge. Please provide the numerical score only.
         # """
-        problem=f"""You are now an epidemiologist and public health expert. Please rate the diagnostic difficulty of {disease} based on your judgement. "Clinical syndrome is diagnostic" corresponds to 1 point , "A simple laboratory test is diagnostic" corresponds to 2 points, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 3 points. Please provide the numerical score only.
+        problem=f"""You are now an epidemiologist and public health expert. Please rate the diagnostic difficulty of {disease} based on your judgement. If "clinical syndrome is diagnostic", then it corresponds to 1 point . "A simple laboratory test is diagnostic" corresponds to 2 points, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 3 points. Please provide the numerical score only.
         """
         diagnostic = model.generate_content(
             problem,
@@ -265,6 +294,32 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         )
         # print(mortality.text)
 
+        # estimate "treatment availability"
+        problem=f"""For {disease}, please mark 1 point if there is an effective therapy or drug available, or 3 points if not. Please provide the numerical score only.
+        """
+        therapy = model.generate_content(
+            problem,
+            generation_config=genai.types.GenerationConfig(temperature=0),
+            safety_settings=[
+                {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+                ]
+        )
+
+        problem=f"""For {disease}, please mark 1 point if there is a vaccine available, or 3 points if not. Please provide the numerical score only.
+        """
+        vaccine = model.generate_content(
+            problem,
+            generation_config=genai.types.GenerationConfig(temperature=0),
+            safety_settings=[
+                {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+                ]
+        )
 
         # # estimate "incubation period"
         # problem=f"""You are now an epidemiologist and public health expert. Please mark the incubation period of {disease} in humans on a scale of 1 to 10 based on your own knowledge, with 1 being the hours and 10 being years.
@@ -328,17 +383,17 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
         #print(stability.text)
 
         # estimate "level of exchange"
-        input = f"{inter.format(country=country)}"
-        interaction = model.generate_content(
-            input,
-            generation_config=genai.types.GenerationConfig(temperature=0),
-            safety_settings=[
-                {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
-                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
-                ]
-        )
+        # input = f"{inter.format(country=country)}"
+        # interaction = model.generate_content(
+        #     input,
+        #     generation_config=genai.types.GenerationConfig(temperature=0),
+        #     safety_settings=[
+        #         {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+        #         {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+        #         ]
+        # )
         #print(interaction.text)
 
     #     eleven = f"""
@@ -363,12 +418,13 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
     4. Basic reproductive number of {disease}: {extract(reproductive.text)}
     5. Mode of transmission of {disease}: {extract(transmission.text)}
     6. Mortality rate of {disease}: {extract(mortality.text)}
-    7. GDP of {country}: {extract(GDP.text)}
-    8. Population density of {country}: {extract(density.text)}
-    9. Level of peace and stability of {country}: {extract(stability.text)}
-    10. Level of exchange with Taiwan of {country}: {extract(interaction.text)}
+    7. Availability of viable treatment of {disease}: {extract(therapy.text)}
+    8. Availability of vaccines of {disease}: {extract(vaccine.text)}
+    9. GDP of {country}: {extract(GDP.text)}
+    10. Population density of {country}: {extract(density.text)}
+    11. Level of peace and stability of {country}: {extract(stability.text)}
     """
-        total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(interaction.text))
+        total_score = int(extract(diagnostic.text))+int(extract(pathogen.text))+int(extract(reservoir.text))+int(extract(reproductive.text))+int(extract(transmission.text))+int(extract(mortality.text))+int(extract(GDP.text))+int(extract(density.text))+int(extract(stability.text))+int(extract(therapy.text))+int(extract(vaccine.text))
 
         # translation
         trans="""
