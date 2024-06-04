@@ -57,7 +57,7 @@ def Report(model, article):
             time.sleep(5)
 
     # translate the article into chinese
-    input = f"{trans_prompt}\n\n{summa+eval}"
+    input = f"{trans_prompt}\n\n{summa.text}\n{eval.text}"
     while(True):
         try:
             trans_report = model.generate_content(
@@ -68,4 +68,4 @@ def Report(model, article):
         except:
             time.sleep(5)
 
-    return trans_report
+    return trans_report.text

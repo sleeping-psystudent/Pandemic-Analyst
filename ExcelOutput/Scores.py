@@ -44,7 +44,24 @@ def disease_items(model, disease):
     disease_scores = {}
 
     # estimate "diagnostic method"
-    problem = f"""You are now an epidemiologist and public health expert. Please rate the diagnostic difficulty of {disease} based on your judgement. If "clinical syndrome is diagnostic", then it corresponds to 1 point . "A simple laboratory test is diagnostic" corresponds to 2 points, and "Advanced or prolonged investigation is required for confirmatory diagnosis" corresponds to 3 points. Please provide the numerical score only.
+    problem = f"""You are now an epidemiologist and public health expert. What's the simplest way to determine if someone is infected with {disease}?
+    """
+    while(True):
+        try:
+            method = model.generate_content(
+                problem,
+                generation_config=genai.types.GenerationConfig(temperature=0),
+                safety_settings=[
+                    {"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_NONE",},
+                    {"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_NONE",},
+                    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_NONE",},
+                    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_NONE",},
+                    ]
+            )
+            break
+        except:
+            time.sleep(5)
+    problem = f"""The simplest way to diagnose {disease} is {method.text}, with a score of 1 if the method is clinically diagnostic, 2 if it requires simple laboratory screening, and 3 if it requires advanced laboratory testing. Please provide the numerical score only.
     """
     while(True):
         try:
@@ -289,4 +306,15 @@ def country_items(model, country):
 
 def Assess(model, article):
         country, disease = extract_country_disease(model, article)
-        return disease, country, disease_items(model, disease), country_items(model, country)
+        title = disease + " in " + country
+        input = f"Please translate {title} into fluent Taiwanese Traditional Chinese."
+        while(True):
+            try:
+                trans_title = model.generate_content(
+                input,
+                generation_config=genai.types.GenerationConfig(temperature=0)
+                )
+                break
+            except:
+                time.sleep(5)
+        return trans_title.text, disease_items(model, disease), country_items(model, country)
