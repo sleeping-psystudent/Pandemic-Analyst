@@ -1,7 +1,7 @@
 import gradio as gr
 import google.generativeai as genai
 from typing import List, Tuple
-import pyperclip
+# import pyperclip
 import re
 
 GOOGLE_API_KEY = ""
@@ -454,7 +454,8 @@ def result_assessment(inter:str, article: str) -> List[Tuple[str, str]]:
 
 # copy chatbox content
 def copy_chatbox_content(chatbox_content, result_content):
-    pyperclip.copy(f"# {disease} in {country}"+"\n"+chatbox_content[-1][-1]+"\n"+result_content[-1][-1])
+    print("good")
+    # pyperclip.copy(f"# {disease} in {country}"+"\n"+chatbox_content[-1][-1]+"\n"+result_content[-1][-1])
 
 def main():
 

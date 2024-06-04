@@ -1,0 +1,5 @@
+You are now an epidemiologist and public health expert. Please provide the following information about {disease}: diagnostic method, pathogen type, reservoir type, basic reproductive number, mode of transmission, mortality rate, availability of viable treatment, and availability of vaccines.
+Please output in the following markdown format, don't forget to add pound signs before "Assessment Criteria"
+## Assessment Criteria
+### The diagnostic method
+...
