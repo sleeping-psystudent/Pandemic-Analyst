@@ -24,7 +24,8 @@ def DataTrain(model, y, X):
         score = accuracy_score(y_test, y_pred)
         if score > best_score:
             # store the model
-            joblib.dump(model, "rf.pkl")
+            file_name = "rf"+len(X)+".pkl"
+            joblib.dump(model, file_name)
 
 def Train():
     file_path = "Analyze.xlsx"
@@ -38,7 +39,8 @@ def Train():
     # PCA
     pca = PCA(n_components=6)
     newX = pca.fit_transform(re_df)
-    joblib.dump(pca, 'pca.pkl')
+    file_name = 'pca'+len(X)+'.pkl'
+    joblib.dump(pca, file_name)
     # extract y value
     newy = y['Status'].values
     # train model
