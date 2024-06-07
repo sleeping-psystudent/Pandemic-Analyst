@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import gradio as gr
 
 from API import input_API
@@ -8,7 +9,8 @@ from Assessment import Train, Analyze
 from ExcelExport import write_to_excel
 
 def execute(text: str, num: None):
-    api = os.getenv("GOOGLE_API_KEY")
+    load_dotenv()
+    api = os.environ["GOOGLE_API_KEY"]
     model = input_API(api)
 
     summary = Report(model, text)
