@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 
 from sklearn.model_selection import LeaveOneOut
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.decomposition import PCA
 
@@ -24,7 +24,7 @@ def DataTrain(model, y, X):
         score = accuracy_score(y_test, y_pred)
         if score > best_score:
             # store the model
-            joblib.dump(model, "logr46.pkl")
+            joblib.dump(model, "rf.pkl")
 
 def Train():
     file_path = "Analyze.xlsx"
@@ -38,20 +38,20 @@ def Train():
     # PCA
     pca = PCA(n_components=6)
     newX = pca.fit_transform(re_df)
-    joblib.dump(pca, 'pcaˊ.pkl')
+    joblib.dump(pca, 'pca.pkl')
     # extract y value
     newy = y['Status'].values
     # train model
-    logr = LogisticRegression(multi_class='multinomial', solver='lbfgs', max_iter=1000)
+    logr = RandomForestClassifier()
     DataTrain(logr, newy, newX)
 
 def Analyze(scores):
     pca = joblib.load('pca46.pkl')
-    logr = joblib.load('logr46.pkl')
+    rf = joblib.load('rf46.pkl')
 
     re_scores = np.array([scores])
     pca_scores = pca.transform(re_scores)
-    prediction = logr.predict(pca_scores)
+    prediction = rf.predict(pca_scores)
 
     if prediction == 3:
         return "Medium"
