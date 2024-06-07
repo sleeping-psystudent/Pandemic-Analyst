@@ -14,7 +14,7 @@ def write_to_excel(file_path, data):
         workbook = Workbook()
         sheet = workbook.active
         # 寫入標題行
-        sheet.append(["title", "summary", "診斷方式", "病原體種類", "宿主類型", "基本傳染數", "傳播方式", "死亡率", "有無治療方式", "有無疫苗", "GDP", "人口密度", "穩定程度"])
+        sheet.append(["title", "summary", "風險評估", "診斷方式", "病原體種類", "宿主類型", "基本傳染數", "傳播方式", "死亡率", "有無治療方式", "有無疫苗", "GDP", "人口密度", "穩定程度"])
         
     sheet.append(data)
     workbook.save(file_path)
