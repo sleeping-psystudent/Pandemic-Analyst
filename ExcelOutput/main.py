@@ -21,14 +21,14 @@ def execute(text: str, num: None):
         data = [title, summary, risk, disease_items["diagnostic"], disease_items["pathogen"], disease_items["reservoir"], disease_items["reproductive"], disease_items["transmission"], disease_items["mortality"], disease_items["therapy"], disease_items["vaccine"], country_items["GDP"], country_items["density"], country_items["stability"]]
         path = "Data.xlsx"
         write_to_excel(path, data)
-        return title+"\n"+risk+"\n"+summary
+        return "# "+title+"\n\n"+"風險評估: "+risk+"\n\n"+summary
     else:
         data = [title, summary, num, disease_items["diagnostic"], disease_items["pathogen"], disease_items["reservoir"], disease_items["reproductive"], disease_items["transmission"], disease_items["mortality"], disease_items["therapy"], disease_items["vaccine"], country_items["GDP"], country_items["density"], country_items["stability"]]
         path = "Report.xlsx"
         write_to_excel(path, data)
         # update model
         Train()
-        return title+"\n"+num+"\n"+summary
+        return "# "+title+"\n\n"+"風險評估: "+num+"\n\n"+summary
 
 def clear():
     return "", ""
