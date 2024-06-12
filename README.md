@@ -30,3 +30,5 @@ Here is the revised version of your instructions for improved grammar and flow:
    ![pic]()
 
 ## Notes
+
+- Adding RAG increases the accuracy of information.
