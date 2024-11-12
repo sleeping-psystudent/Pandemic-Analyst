@@ -1,0 +1,2 @@
+Please extract the main one and only city/county/village mentioned in the article, add the country name after each location.
+For example: "Kigali Province, Rwanda"
