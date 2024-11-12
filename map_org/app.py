@@ -38,10 +38,10 @@ def format_text(text):
     return "<br><br>".join(formatted_sections)
 
 # 設定頁面
-st.set_page_config(page_title="你好我的朋", layout="wide")
+st.set_page_config(page_title="國際疫情地圖", layout="wide")
 
 # 連接資料庫
-conn = sqlite3.connect('disease_info.db')  
+conn = sqlite3.connect('./map_org/disease_info.db')  
 cursor = conn.cursor()
 
 # 讀取資料表
