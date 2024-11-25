@@ -53,7 +53,7 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
-    .st-emotion-cache-0 {
+    .stElementContainer element-container st-emotion-cache-10kjkde e1f1d6gn4 {
         height: 100%;
     }
 
