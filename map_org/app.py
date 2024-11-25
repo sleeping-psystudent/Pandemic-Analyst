@@ -37,10 +37,15 @@ st.set_page_config(page_title="國際疫情地圖", layout="wide")
 st.markdown(
     """
     <style>
+    element.style {
+        position: fixed;
+        height: 100%
+    }
+    
     /* 固定地圖容器 */
     .map-container {
         position: fixed;
-        height: 1000px;
+        height: 100%;
         left: 0px; /* 側邊欄的寬度 */
         margin: 0px;
         padding: 0px;
