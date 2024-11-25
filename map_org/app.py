@@ -54,8 +54,10 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
-    .st-emotion-cache-0 elp1w7k0 {
+    .stElementContainer element-container st-emotion-cache-wju661 e1f1d6gn4 {
+        position: fixed;
         height: 100%;
+        z-index: 10000;
     }
 
     .st-emotion-cache-bm2z3a {
