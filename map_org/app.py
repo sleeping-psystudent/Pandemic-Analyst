@@ -64,15 +64,13 @@ st.markdown(
     .st-emotion-cache-0.elp1w7k0 {
         height: 100%;
     }
-    .stDeckGlJsonChart.st-emotion-cache-whppok.e1az0zs51 {
-        height: 100%;
-    }
+
     #deckgl-wrapper {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 700px;
+        height: 100;
         z-index: 10000;
     }
 
