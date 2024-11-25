@@ -65,7 +65,7 @@ st.markdown(
     }
     .stDeckGlJsonChart.st-emotion-cache-whppok.e1az0zs51 {
         box-sizing: content-box !important;
-        height: 100%;
+        height: 100% !important;
     }
     
     #deckgl-wrapper {
