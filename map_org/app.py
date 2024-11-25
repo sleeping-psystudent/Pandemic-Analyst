@@ -64,6 +64,10 @@ st.markdown(
         height: 100%;
     }
 
+    .st-emotion-cache-13k62yr.erw9t6i0 {
+        height: 100% !important;
+    }
+    
     .stDeckGlJsonChart[data-testid="stDeckGlJsonChart"] {
         height: 100% !important;
     }
