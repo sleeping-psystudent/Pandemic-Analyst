@@ -65,6 +65,10 @@ st.markdown(
         height: 100%;
     }
 
+    .st-emotion-cache-whppok {
+        height: 100%;
+    }
+
     #deckgl-wrapper {
         position: fixed;
         top: 0;
