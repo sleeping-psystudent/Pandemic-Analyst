@@ -167,13 +167,14 @@ r = pdk.Deck(
     initial_view_state=view_state,
     tooltip={
         "style":{
+            "font-size": "12px",
             "opacity": 0.9,
             "overflow": "scroll",
             "z-index": 2147483647
         },
         "html": """
             <div class='tooltip' style="
-            max-width: 600px;">
+            max-width: 400px;">
                 <h4>{emoji} {risk_assessment}</h4>
                 <small>|| 發布日期: {date} ({weeks_ago} 週前)</small><hr>
                 <div>{summary}</div>
