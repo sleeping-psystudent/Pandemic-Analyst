@@ -63,15 +63,6 @@ st.markdown(
     .st-emotion-cache-0.elp1w7k0 {
         height: 100%;
     }
-
-    .st-emotion-cache-13k62yr.erw9t6i0 {
-        height: 100% !important;
-    }
-    
-    .stDeckGlJsonChart[data-testid="stDeckGlJsonChart"] {
-        box-sizing: content-box !important;
-        height: 100% !important;
-    }
     
     #deckgl-wrapper {
         box-sizing: content-box !important;
@@ -87,6 +78,15 @@ st.markdown(
         height: 0px;
     }
     </style>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const element = document.querySelector('.stDeckGlJsonChart[data-testid="stDeckGlJsonChart"]');
+        if (element) {
+            element.setAttribute("height", "100%");
+        }
+    });
+    </script>
     """,
     unsafe_allow_html=True,
 )
