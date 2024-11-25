@@ -63,7 +63,8 @@ st.markdown(
     .st-emotion-cache-0.elp1w7k0 {
         height: 100%;
     }
-    .stDeckGlJsonChart {
+
+    .stDeckGlJsonChart[data-testid="stDeckGlJsonChart"] {
         height: 100% !important;
     }
     
