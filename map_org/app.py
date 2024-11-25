@@ -64,6 +64,7 @@ st.markdown(
         height: 100%;
     }
     .st-emotion-cache-1730l13 {
+        box-sizing: content-box !important;
         height: 100%;
     }
     
