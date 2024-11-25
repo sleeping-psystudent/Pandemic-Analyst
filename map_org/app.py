@@ -54,18 +54,7 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
     
-    stElementContainer element-container st-emotion-cache-4wkt7q e1f1d6gn4 {
-        height: 100%;
-    }
-    
-    st-emotion-cache-0 elp1w7k0 {
-        height: 100%;
-    }
-    
-    stDeckGlJsonChart st-emotion-cache-fny43r e1az0zs51{
-        height: 100%;
-    }
-    
+
     deckgl-wrapper {
         position: fixed;
         height: 100%;
