@@ -65,7 +65,7 @@ st.markdown(
     }
     
     .stDeckGlJsonChart {
-        height: 95vh !important; /* 將高度設置為視窗高度 */
+        height: 80vh !important; /* 將高度設置為視窗高度 */
     }
     
     #deckgl-wrapper {
