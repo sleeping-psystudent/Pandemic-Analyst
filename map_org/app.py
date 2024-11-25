@@ -44,6 +44,7 @@ st.markdown(
         left: 0px; /* 側邊欄的寬度 */
         margin: 0px;
         padding: 0px;
+        z-index: 2000;
     }
 
     .st-emotion-cache-1jicfl2 {
@@ -51,10 +52,6 @@ st.markdown(
         height: 100%;
         width: 100%;
         padding: 0rem 0rem 0rem;
-    }
-
-    .stElementContainer element-container st-emotion-cache-10kjkde e1f1d6gn4 {
-        height: 100%;
     }
 
     .st-emotion-cache-bm2z3a {
@@ -138,7 +135,7 @@ layer = pdk.Layer(
     auto_highlight=True
 )
 
-view_state = pdk.ViewState(height= 800, latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
+view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
 # view_state = pdk.ViewState(height = 800, latitude=20, longitude=0, zoom=1, pitch=0)
 
 r = pdk.Deck(
