@@ -62,7 +62,7 @@ st.markdown(
 )
 
 # 連接資料庫與讀取資料
-conn = sqlite3.connect('disease_info.db')  
+conn = sqlite3.connect('./map_org/disease_info.db')  
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM disease_info", conn)
 
