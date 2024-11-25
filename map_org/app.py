@@ -53,22 +53,22 @@ st.markdown(
         width: 100%;
         padding: 0rem 0rem 0rem;
     }
-    st-emotion-cache-0 e1f1d6gn0 {
+    .st-emotion-cache-0 e1f1d6gn0 {
         height: 100%;
     }
-    st-emotion-cache-1wmy9hl e1f1d6gn1 {
+    .st-emotion-cache-1wmy9hl e1f1d6gn1 {
         height: 100%;
     }
-    stElementContainer element-container st-emotion-cache-1xl908n e1f1d6gn4 {
+    .stElementContainer element-container st-emotion-cache-1xl908n e1f1d6gn4 {
         height: 100%;
     }
-    st-emotion-cache-0 elp1w7k0 {
+    .st-emotion-cache-0 elp1w7k0 {
         height: 100%;
     }
-    stDeckGlJsonChart st-emotion-cache-whppok e1az0zs51 {
+    .stDeckGlJsonChart st-emotion-cache-whppok e1az0zs51 {
         height: 100%;
     }
-    deckgl-wrapper {
+    .deckgl-wrapper {
         position: fixed;
         height: 100%;
         z-index: 10000;
