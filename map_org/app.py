@@ -168,7 +168,6 @@ r = pdk.Deck(
     tooltip={
         "style":{
             "font-size": "12px",
-            "line-height": "8px",
             "opacity": 0.9,
             "overflow": "scroll",
             "z-index": 2147483647
@@ -176,8 +175,8 @@ r = pdk.Deck(
         "html": """
             <div class='tooltip' style="
             max-width: 400px;">
-                <h5>{emoji} {risk_assessment}</h5>
-                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr>
+                <h5 style="margin-bottom: 4px;">{emoji} {risk_assessment}</h5>
+                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 2px 0;">
                 <div>{summary}</div>
             </div>
         """
