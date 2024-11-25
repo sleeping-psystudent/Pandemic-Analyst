@@ -47,6 +47,7 @@ st.markdown(
     }
 
     .st-emotion-cache-1jicfl2 {
+        height: 100%;
         width: 100%;
         padding: 0rem 0rem 0rem;
         min-width: auto;
