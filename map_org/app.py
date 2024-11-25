@@ -53,32 +53,7 @@ st.markdown(
         width: 100%;
         padding: 0rem 0rem 0rem;
     }
-
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    .st-emotion-cache-0.e1f1d6gn0 {
-        height: 100%;
-    }
-    .st-emotion-cache-1wmy9hl.e1f1d6gn1 {
-        height: 100%;
-    }
-
-    .st-emotion-cache-0.elp1w7k0 {
-        height: 100%;
-    }
-
-    .st-emotion-cache-whppok {
-        height: 100%;
-    }
-
-    .stApp stAppEmbeddingId-snigq8nktr6r streamlit-wide st-emotion-cache-13k62yr erw9t6i0 {
-        height:100%;
-    }
-
+    
     #deckgl-wrapper {
         position: fixed;
         top: 0;
