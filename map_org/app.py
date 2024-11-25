@@ -47,6 +47,13 @@ st.markdown(
         padding: 0px;
     }
     </style>
+
+    .st-emotion-cache-1jicfl2 {
+    width: 100%;
+    padding: 0rem 0rem 0rem;
+    min-width: auto;
+    max-width: auto;
+    }
     """,
     unsafe_allow_html=True,
 )
