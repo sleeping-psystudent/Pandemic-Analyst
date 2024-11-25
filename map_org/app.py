@@ -176,7 +176,7 @@ r = pdk.Deck(
             <style>
               .small-gap {
                   display: block;
-                  margin-top: 10px;
+                  margin-top: 5px;
               }
             </style>
             <div class='tooltip' style="
