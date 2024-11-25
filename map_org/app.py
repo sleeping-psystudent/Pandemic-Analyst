@@ -43,7 +43,8 @@ st.markdown(
         top: 500px;
         left: 0px; /* 側邊欄的寬度 */
         width: calc(100% - 300px); /* 減去側邊欄的寬度 */
-        margin: -100px;
+        margin: 0px;
+        padding: 0;
     }
     
     /* 調整側邊欄寬度 */
