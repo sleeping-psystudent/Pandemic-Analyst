@@ -28,7 +28,7 @@ def format_text(text):
         return "<br>".join(formatted_lines)
     sections = cleaned_text.split("\n\n")  
     formatted_sections = [replace_bullet_points(section) for section in sections]
-    return "<br><br>".join(formatted_sections)
+    return "<br>".join(formatted_sections)
 
 # 設定頁面
 st.set_page_config(page_title="國際疫情地圖", layout="wide")
@@ -175,8 +175,8 @@ r = pdk.Deck(
         "html": """
             <div class='tooltip' style="
             max-width: 400px;">
-                <h4>{emoji} {risk_assessment}</h4>
-                <small>|| 發布日期: {date} ({weeks_ago} 週前)</small><hr>
+                <h5>{emoji} {risk_assessment}</h5>
+                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr>
                 <div>{summary}</div>
             </div>
         """
