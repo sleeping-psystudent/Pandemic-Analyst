@@ -54,7 +54,7 @@ st.markdown(
         max-width: auto;
     }
 
-    .view-dault-view {
+    .view-default-view {
         height: 100%,
         width: 100%
     }
