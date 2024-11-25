@@ -175,8 +175,8 @@ r = pdk.Deck(
         "html": """
             <div class='tooltip' style="
             max-width: 400px;">
-                <h5 style="margin-bottom: 2px;">{emoji} {risk_assessment}</h5>
-                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 4px 0;">
+                <h5 style="margin-bottom: -3px;">{emoji} {risk_assessment}</h5>
+                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 6px 0;">
                 <div>{summary}</div>
             </div>
         """
