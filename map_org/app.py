@@ -47,16 +47,14 @@ st.markdown(
     }
 
     .st-emotion-cache-1jicfl2 {
-        position: fixed,
+        position: fixed;
         height: 100%;
         width: 100%;
         padding: 0rem 0rem 0rem;
     }
 
-    .view-default-view {
-        position: fixed,
-        height: 800px,
-        width: 100%
+    .stMain st-emotion-cache-bm2z3a ea3mdgi8 {
+        height: 0px;
     }
     </style>
     """,
