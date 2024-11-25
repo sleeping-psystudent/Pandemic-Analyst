@@ -64,6 +64,10 @@ st.markdown(
         height: 100%;
     }
     
+    .stDeckGlJsonChart {
+        height: 100vh !important; /* 將高度設置為視窗高度 */
+    }
+    
     #deckgl-wrapper {
         box-sizing: content-box !important;
         position: fixed;
