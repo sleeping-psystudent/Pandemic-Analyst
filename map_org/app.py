@@ -54,6 +54,12 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
     .st-emotion-cache-0.e1f1d6gn0 {
         height: 100%;
     }
