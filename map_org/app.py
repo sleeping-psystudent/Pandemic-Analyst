@@ -44,18 +44,7 @@ st.markdown(
         left: 0px; /* 側邊欄的寬度 */
         width: calc(100% - 300px); /* 減去側邊欄的寬度 */
         margin: 0px;
-        padding: 0;
-    }
-    
-    /* 調整側邊欄寬度 */
-    .css-1lcbmhc.e1fqkh3o3 { /* Streamlit 預設的側邊欄 class */
-        width: 300px;
-    }
-
-    /* 移除 Streamlit 預設間距 */
-    .css-18e3th9 {
-        padding: 0;
-        margin: 0 !important;
+        padding: 0px;
     }
     </style>
     """,
