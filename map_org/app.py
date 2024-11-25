@@ -47,6 +47,7 @@ st.markdown(
     }
 
     .st-emotion-cache-1jicfl2 {
+        position: fixed,
         height: 100%;
         width: 100%;
         padding: 0rem 0rem 0rem;
@@ -55,6 +56,7 @@ st.markdown(
     }
 
     .view-default-view {
+        position: fixed,
         height: 100%,
         width: 100%
     }
