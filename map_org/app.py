@@ -142,8 +142,8 @@ r = pdk.Deck(
     initial_view_state=view_state,
     tooltip={
         "style":{
-            "backgroundColor": "transparent",
-            "color": "steelblue"
+            "opacity": 0.7,
+            "backgroundColor": "steelblue",
         },
         "html": """
             <div class='tooltip' style="
