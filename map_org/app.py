@@ -141,6 +141,7 @@ r = pdk.Deck(
     layers=[layer],
     initial_view_state=view_state,
     tooltip={
+        backgroundColor: "transparent",
         "html": """
             <div class='tooltip' style="
             max-width: 600px;">
