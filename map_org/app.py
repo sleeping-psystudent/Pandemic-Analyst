@@ -72,7 +72,7 @@ st.markdown(
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 700px;
         z-index: 10000;
     }
 
