@@ -59,7 +59,7 @@ st.markdown(
         height: 0px;
     }
 
-    .st-emotion-cache-13k62yr {
+    view-default-view {
         position: fixed;
         height: 100%
     }
