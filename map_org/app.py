@@ -159,7 +159,7 @@ layer = pdk.Layer(
     auto_highlight=True
 )
 
-view_state = pdk.ViewState(height = 800, latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
+view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
 # view_state = pdk.ViewState(height = 800, latitude=20, longitude=0, zoom=1, pitch=0)
 
 r = pdk.Deck(
@@ -184,7 +184,7 @@ r = pdk.Deck(
 
 # 顯示固定地圖
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
-st.pydeck_chart(r)
+st.pydeck_chart(r , height=700)
 st.markdown('</div>', unsafe_allow_html=True)
 
 
