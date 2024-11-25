@@ -28,7 +28,7 @@ def format_text(text):
         return "<br>".join(formatted_lines)
     sections = cleaned_text.split("\n\n")  
     formatted_sections = [replace_bullet_points(section) for section in sections]
-    return "<span class=\"small-gap\"></span><br>".join(formatted_sections)
+    return "<span class=\"small-gap\"></span>".join(formatted_sections)
 
 # 設定頁面
 st.set_page_config(page_title="國際疫情地圖", layout="wide")
@@ -176,7 +176,7 @@ r = pdk.Deck(
             <style>
               .small-gap {
                   display: block;
-                  margin-top: 4px;
+                  margin-top: 10px;
               }
             </style>
             <div class='tooltip' style="
