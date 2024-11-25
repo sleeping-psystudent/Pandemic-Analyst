@@ -51,13 +51,11 @@ st.markdown(
         height: 100%;
         width: 100%;
         padding: 0rem 0rem 0rem;
-        min-width: auto;
-        max-width: auto;
     }
 
     .view-default-view {
         position: fixed,
-        height: 100%,
+        height: 800px,
         width: 100%
     }
     </style>
