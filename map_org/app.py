@@ -69,6 +69,7 @@ st.markdown(
     }
     
     .stDeckGlJsonChart[data-testid="stDeckGlJsonChart"] {
+        box-sizing: content-box !important;
         height: 100% !important;
     }
     
