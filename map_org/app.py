@@ -60,9 +60,7 @@ st.markdown(
     .st-emotion-cache-1wmy9hl.e1f1d6gn1 {
         height: 100%;
     }
-    .st-emotion-cache-1xl908n.e1f1d6gn4 {
-        height: 100%;
-    }
+
     .st-emotion-cache-0.elp1w7k0 {
         height: 100%;
     }
