@@ -78,15 +78,6 @@ st.markdown(
         height: 0px;
     }
     </style>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const element = document.querySelector('.stDeckGlJsonChart[data-testid="stDeckGlJsonChart"]');
-        if (element) {
-            element.setAttribute("height", "100%");
-        }
-    });
-    </script>
     """,
     unsafe_allow_html=True,
 )
@@ -189,7 +180,7 @@ r = pdk.Deck(
 
 # 顯示固定地圖
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
-st.pydeck_chart(r)
+st.pydeck_chart(r, height = 800)
 st.markdown('</div>', unsafe_allow_html=True)
 
 
