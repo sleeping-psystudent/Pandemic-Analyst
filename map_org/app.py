@@ -75,6 +75,10 @@ st.markdown(
         height: 100%;
     }
 
+    .stApp stAppEmbeddingId-snigq8nktr6r streamlit-wide st-emotion-cache-13k62yr erw9t6i0 {
+        height:100%;
+    }
+
     #deckgl-wrapper {
         position: fixed;
         top: 0;
