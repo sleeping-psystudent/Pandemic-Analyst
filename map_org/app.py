@@ -143,7 +143,8 @@ r = pdk.Deck(
     tooltip={
         "style":{
             "opacity": 0.9,
-            "overflow": auto
+            "overflow": "scroll",
+            "z-index": 2147483647
         },
         "html": """
             <div class='tooltip' style="
