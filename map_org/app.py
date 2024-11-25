@@ -53,6 +53,11 @@ st.markdown(
         min-width: auto;
         max-width: auto;
     }
+
+    .view-dault-view {
+        height: 100%,
+        width: 100%
+    }
     </style>
     """,
     unsafe_allow_html=True,
