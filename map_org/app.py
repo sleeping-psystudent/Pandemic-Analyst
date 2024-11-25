@@ -37,7 +37,6 @@ st.set_page_config(page_title="國際疫情地圖", layout="wide")
 st.markdown(
     """
     <style>
-    
     /* 固定地圖容器 */
     .map-container {
         position: fixed;
@@ -55,13 +54,12 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
-    .st-emotion-cache-bm2z3a {
-        height: 0px;
+    .st-emotion-cache-0 elp1w7k0 {
+        height: 100%;
     }
 
-    view-default-view {
-        position: fixed;
-        height: 100%
+    .st-emotion-cache-bm2z3a {
+        height: 0px;
     }
     </style>
     """,
@@ -141,7 +139,7 @@ layer = pdk.Layer(
     auto_highlight=True
 )
 
-view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
+view_state = pdk.ViewState(height = 800, latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
 # view_state = pdk.ViewState(height = 800, latitude=20, longitude=0, zoom=1, pitch=0)
 
 r = pdk.Deck(
