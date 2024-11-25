@@ -54,7 +54,7 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
-    .stElementContainer element-container st-emotion-cache-wju661 e1f1d6gn4 {
+    deckgl-wrapper {
         position: fixed;
         height: 100%;
         z-index: 10000;
