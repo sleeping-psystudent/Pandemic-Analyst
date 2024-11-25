@@ -60,6 +60,7 @@ st.markdown(
         left: 0;
         width: 100%;
         height: 100 !important;
+        box-sizing: content-box !important;
         z-index: 10000;
     }
 
