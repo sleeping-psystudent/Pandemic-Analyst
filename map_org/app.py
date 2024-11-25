@@ -63,7 +63,7 @@ st.markdown(
     .st-emotion-cache-0.elp1w7k0 {
         height: 100%;
     }
-    .stDeckGlJsonChart.st-emotion-cache-whppok.e1az0zs51 {
+    .stDeckGlJsonChart st-emotion-cache-1730l13 e1az0zs51 {
         height: 100%;
     }
     
