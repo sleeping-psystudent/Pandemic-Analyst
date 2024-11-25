@@ -184,7 +184,7 @@ r = pdk.Deck(
 
 # 顯示固定地圖
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
-st.pydeck_chart(r, height = "100%")
+st.pydeck_chart(r)
 st.markdown('</div>', unsafe_allow_html=True)
 
 
