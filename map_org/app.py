@@ -37,10 +37,6 @@ st.set_page_config(page_title="國際疫情地圖", layout="wide")
 st.markdown(
     """
     <style>
-    element.style {
-        position: fixed;
-        height: 100%
-    }
     
     /* 固定地圖容器 */
     .map-container {
@@ -61,6 +57,11 @@ st.markdown(
 
     .st-emotion-cache-bm2z3a {
         height: 0px;
+    }
+
+    .st-emotion-cache-13k62yr {
+        position: fixed;
+        height: 100%
     }
     </style>
     """,
