@@ -69,7 +69,7 @@ st.markdown(
     .stDeckGlJsonChart.st-emotion-cache-whppok.e1az0zs51 {
         height: 100%;
     }
-    .deckgl-wrapper {
+    #deckgl-wrapper {
         position: fixed;
         top: 0;
         left: 0;
