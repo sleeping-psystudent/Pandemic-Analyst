@@ -53,6 +53,10 @@ st.markdown(
         padding: 0rem 0rem 0rem;
     }
 
+    .st-emotion-cache-0 {
+        height: 100%;
+    }
+
     .st-emotion-cache-bm2z3a {
         height: 0px;
     }
