@@ -138,7 +138,7 @@ layer = pdk.Layer(
     auto_highlight=True
 )
 
-view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
+view_state = pdk.ViewState(height= 800, latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
 # view_state = pdk.ViewState(height = 800, latitude=20, longitude=0, zoom=1, pitch=0)
 
 r = pdk.Deck(
