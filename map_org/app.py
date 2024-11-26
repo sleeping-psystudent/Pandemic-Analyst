@@ -55,17 +55,17 @@ st.markdown(
     }
 
     .st-emotion-cache-0.e1f1d6gn0 {
-    height: 95vh;
+    height: 100vh;
     }
     .st-emotion-cache-1wmy9hl.e1f1d6gn1 {
-        height: 95vh;
+        height: 100vh;
     }
     .st-emotion-cache-0.elp1w7k0 {
-        height: 95vh;
+        height: 100vh;
     }
     
     .stDeckGlJsonChart {
-        height: 95vh !important; /* 將高度設置為視窗高度 */
+        height: 100vh !important; /* 將高度設置為視窗高度 */
     }
     
     #deckgl-wrapper {
@@ -74,7 +74,7 @@ st.markdown(
         top: 0;
         left: 0;
         width: 100%;
-        height: 95 !important;
+        height: 100vh !important;
         z-index: 10000;
     }
 
