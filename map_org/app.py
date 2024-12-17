@@ -34,7 +34,7 @@ def format_text(text):
 st.set_page_config(page_title="全球疫情地圖", page_icon="map_org/ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
 
 # 自定義CSS
-st.markdown(
+# st.markdown(
 #     """
 #     <style>
 #     /* 固定地圖容器 */
