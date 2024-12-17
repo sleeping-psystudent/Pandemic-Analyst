@@ -48,20 +48,6 @@ st.markdown(
     }
 
 
-    
-    .stDeckGlJsonChart {
-        height: 95vh !important; /* 將高度設置為視窗高度 */
-    }
-    
-    #deckgl-wrapper {
-        box-sizing: content-box !important;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 95vh !important;
-    }
-
     .st-emotion-cache-bm2z3a {
         height: 0px;
     }
