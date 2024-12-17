@@ -38,6 +38,9 @@ st.markdown(
     """
     <style>
 
+    .st-emotion-cache-bm2z3a {
+        height: 0px;
+    }
     </style>
     """,
     unsafe_allow_html=True
