@@ -187,11 +187,11 @@ r = pdk.Deck(
             <style>
               .small-gap {
                   display: block;
-                  margin-top: 10px;
+                  margin-top: 5px;
               }
             </style>
             <div id='custom-tooltip' class='tooltip'>
-                <h2 style="margin-bottom: -10px;">{emoji} {risk_assessment}</h2>
+                <h2 style="margin-bottom: -5px;">{emoji} {risk_assessment}</h2>
                  <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 6px 0;margin-bottom: 10px;">
                 <div>{summary}</div>
             </div>
