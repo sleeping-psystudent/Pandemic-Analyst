@@ -60,7 +60,7 @@ st.markdown(
     }
 
     .st-emotion-cache-1jicfl2 {
-        position: fixed;
+        position: fixed !important;
         height: 100%;
         left: 0px;
         width: 100%;
