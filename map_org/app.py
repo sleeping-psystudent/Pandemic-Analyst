@@ -202,8 +202,8 @@ st.pydeck_chart(r)
 st.markdown('</div>', unsafe_allow_html=True)
 
 
- with st.expander("疫情資料表"):
-     st.write("#### 📊 疫情資料表")
+# with st.expander("疫情資料表"):
+#     st.write("#### 📊 疫情資料表")
 
 #     # 建立四個篩選器
 #     col1, col2, col3, col4 = st.columns(4)
