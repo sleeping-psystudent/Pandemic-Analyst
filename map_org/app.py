@@ -80,6 +80,10 @@ st.markdown(
     .stDeckGlJsonChart {
         height: 95vh !important; /* 將高度設置為視窗高度 */
     }
+
+    .st-emotion-cache-1n49urh {
+        position: fixed !important;
+    }
     
     #deckgl-wrapper {
         box-sizing: content-box !important;
