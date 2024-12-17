@@ -31,7 +31,7 @@ def format_text(text):
     return "<span class=\"small-gap\"></span>".join(formatted_sections)
 
 # 設定頁面
-st.set_page_config(page_title="國際疫情地圖", page_icon="map_org/ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
+st.set_page_config(page_title="全球疫情地圖", page_icon="map_org/ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
 
 # 自定義CSS
 st.markdown(
@@ -199,6 +199,8 @@ r = pdk.Deck(
 # 顯示固定地圖
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
 st.pydeck_chart(r)
+print("This is print")
+st.write("This is stwrite")
 st.markdown('</div>', unsafe_allow_html=True)
 
 
