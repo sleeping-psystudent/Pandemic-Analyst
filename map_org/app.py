@@ -47,6 +47,44 @@ st.markdown(
         z-index: 2000;
     }
 
+    .st-emotion-cache-1itdyc2.eczjsme18 {
+        opacity: 0.85;
+    }
+
+    .st-emotion-cache-6qob1r.eczjsme11 {
+        overflow: hidden;
+    }
+
+    .st-emotion-cache-1jicfl2 {
+        position: fixed;
+        height: 100%;
+        left: 0px;
+        width: 100%;
+        padding: 0rem 0rem 0rem;
+    }
+
+    .st-emotion-cache-0.e1f1d6gn0 {
+    height: 95vh;
+    }
+    .st-emotion-cache-1wmy9hl.e1f1d6gn1 {
+        height: 95vh;
+    }
+    .st-emotion-cache-0.elp1w7k0 {
+        height: 95vh;
+    }
+    
+    .stDeckGlJsonChart {
+        height: 95vh !important; /* 將高度設置為視窗高度 */
+    }
+    
+    #deckgl-wrapper {
+        box-sizing: content-box !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 95vh !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
