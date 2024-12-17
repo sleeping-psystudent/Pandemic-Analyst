@@ -38,6 +38,10 @@ st.markdown(
     """
     <style>
     /* 固定地圖容器 */
+    .stMainBlockContainer.block-container.st-emotion-cache-1ibsh2c.ekr3hml4 {
+        padding: 0px !important;
+    }
+    
     .map-container {
         position: fixed;
         height: 100%;
