@@ -37,20 +37,7 @@ st.set_page_config(page_title="全球疫情地圖", page_icon="map_org/ROC_Cente
 st.markdown(
     """
     <style>
-    /* 固定地圖容器 */
-    .map-container {
-        position: fixed;
-        height: 100%;
-        left: 0px; /* 側邊欄的寬度 */
-        margin: 0px;
-        padding: 0px;
-        z-index: 2000;
-    }
 
-
-    .st-emotion-cache-bm2z3a {
-        height: 0px;
-    }
     </style>
     """,
     unsafe_allow_html=True
