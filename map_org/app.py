@@ -43,7 +43,7 @@ st.markdown(
     }
     
     .map-container {
-        position: fixed;
+        position: fixed !important;
         height: 100%;
         left: 0px; /* 側邊欄的寬度 */
         margin: 0px;
