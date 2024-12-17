@@ -31,7 +31,7 @@ def format_text(text):
     return "<span class=\"small-gap\"></span>".join(formatted_sections)
 
 # 設定頁面
-st.set_page_config(page_title="國際疫情地圖", page_icon="ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
+st.set_page_config(page_title="國際疫情地圖", page_icon="map_org/ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
 
 # 自定義CSS
 st.markdown(
@@ -96,7 +96,7 @@ st.markdown(
 )
 
 # 連接資料庫
-conn = sqlite3.connect('disease_info.db')  
+conn = sqlite3.connect('map_org/disease_info.db')  
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM disease_info", conn)
 
