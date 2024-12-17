@@ -96,7 +96,7 @@ st.markdown(
 )
 
 # 連接資料庫
-conn = sqlite3.connect('disease_info.db')  
+conn = sqlite3.connect('./map_org/disease_info.db')  
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM disease_info", conn)
 
@@ -197,6 +197,7 @@ r = pdk.Deck(
 )
 
 # 顯示固定地圖
+st.write("hello")
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
 st.pydeck_chart(r)
 st.markdown('</div>', unsafe_allow_html=True)
