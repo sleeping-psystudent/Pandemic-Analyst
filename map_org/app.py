@@ -86,11 +86,10 @@ st.markdown(
     }
     
     #deckgl-wrapper {
-        box-sizing: content-box !important;
-        position: sticky !important;
+        position: fixed !important;
         top: 0;
         left: 0;
-        width: 100%;
+        width: 100% !important;
         height: 95vh !important;
         z-index: 10000;
     }
