@@ -87,7 +87,7 @@ st.markdown(
     
     #deckgl-wrapper {
         box-sizing: content-box !important;
-        position: fixed !important;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
