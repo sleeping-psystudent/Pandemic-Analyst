@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime, timedelta
 import pydeck as pdk
 
-# 格式化文章文字
+# 格式化文章
 def format_text(text):
     title_map = {
         "新聞摘要": "📰 <strong>新聞摘要</strong>",
@@ -31,9 +31,9 @@ def format_text(text):
     return "<span class=\"small-gap\"></span>".join(formatted_sections)
 
 # 設定頁面
-st.set_page_config(page_title="國際疫情地圖", layout="wide")
+st.set_page_config(page_title="國際疫情地圖", page_icon="ROC_Centers_for_Disease_Control_Emblem.svg", layout="wide")
 
-# 注入自定義 CSS 固定地圖位置
+# 自定義CSS
 st.markdown(
     """
     <style>
@@ -47,9 +47,18 @@ st.markdown(
         z-index: 2000;
     }
 
+    .st-emotion-cache-1itdyc2.eczjsme18 {
+        opacity: 0.85;
+    }
+
+    .st-emotion-cache-6qob1r.eczjsme11 {
+        overflow: hidden;
+    }
+
     .st-emotion-cache-1jicfl2 {
         position: fixed;
         height: 100%;
+        left: 0px;
         width: 100%;
         padding: 0rem 0rem 0rem;
     }
@@ -86,8 +95,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# 連接資料庫與讀取資料
-conn = sqlite3.connect('./map_org/disease_info.db')  
+# 連接資料庫
+conn = sqlite3.connect('disease_info.db')  
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM disease_info", conn)
 
@@ -167,10 +176,9 @@ r = pdk.Deck(
     initial_view_state=view_state,
     tooltip={
         "style":{
+            "max-width": "400px",
             "font-size": "12px",
-            "opacity": 0.9,
-            "overflow": "scroll",
-            "z-index": 2147483647
+            "opacity": 0.9
         },
         "html": """
             <style>
@@ -179,8 +187,7 @@ r = pdk.Deck(
                   margin-top: 5px;
               }
             </style>
-            <div class='tooltip' style="
-            max-width: 400px;">
+            <div id='custom-tooltip', class='tooltip'>
                 <h5 style="margin-bottom: -10px;">{emoji} {risk_assessment}</h5>
                  <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 6px 0;margin-bottom: 10px;">
                 <div>{summary}</div>
@@ -191,7 +198,7 @@ r = pdk.Deck(
 
 # 顯示固定地圖
 st.markdown('<div class="map-container">', unsafe_allow_html=True)
-st.pydeck_chart(r , height=700)
+st.pydeck_chart(r)
 st.markdown('</div>', unsafe_allow_html=True)
 
 
