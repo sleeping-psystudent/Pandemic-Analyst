@@ -180,8 +180,7 @@ r = pdk.Deck(
     tooltip={
         "style":{
             "position": "relative",
-            "top": "-100px",
-            "left": "-200px",
+            "top": "-150px",
             "max-width": "400px",
             "font-size": "12px",
             "opacity": 0.9
