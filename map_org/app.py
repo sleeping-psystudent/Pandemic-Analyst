@@ -181,6 +181,7 @@ r = pdk.Deck(
         "style":{
             "position": "relative",
             "top": "-150px",
+            "left": "10px",
             "max-width": "400px",
             "font-size": "12px",
             "opacity": 0.9
