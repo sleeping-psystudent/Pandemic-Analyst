@@ -51,7 +51,7 @@ st.markdown(
         z-index: 2000;
     }
 
-    .st-emotion-cache-6qob1r.e1dbuyne8 {
+    .st-emotion-cache-1wqrzgl.e1dbuyne0 {
         opacity: 0.85;
     }
 
