@@ -150,29 +150,6 @@ map_data = pd.DataFrame(location_data)
 if map_data.empty:
     st.warning("⚠️ 找不到符合篩選條件的疫情資料，請調整篩選範圍！")
 else:
-    location_data = []
-    for _, row in filtered_df.iterrows():
-        locations = row['location'].split('\n')
-        for loc in locations:
-            lat_lon = loc.split(',')
-            if len(lat_lon) == 2:
-                try:
-                    lat = float(lat_lon[0].strip())
-                    lon = float(lat_lon[1].strip())
-                    location_data.append({
-                        'country': row['country'],
-                        'disease_name': row['disease_name'],
-                        'lat': lat,
-                        'lon': lon,
-                        'risk_assessment': row['risk_assessment'],
-                        'emoji': risk_colors[row['risk_assessment']][0],
-                        'summary': format_text(row['summary']),
-                        'date': datetime.strftime(row['date'], '%Y-%m-%d')
-                    })
-                except ValueError:
-                    continue
-    
-    map_data = pd.DataFrame(location_data)
     today = datetime.now()
     map_data['weeks_ago'] = map_data['date'].apply(lambda x: (today - datetime.strptime(x, '%Y-%m-%d')).days // 7)
     map_data['color'] = map_data.apply(lambda x: risk_colors[x['risk_assessment']][1] + [150], axis=1)
