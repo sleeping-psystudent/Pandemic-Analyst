@@ -157,6 +157,7 @@ for _, row in filtered_df.iterrows():
 
 map_data = pd.DataFrame(location_data)
 today = datetime.now()
+map_data.head(5)
 map_data['weeks_ago'] = (today - map_data['date']).dt.days // 7
 map_data['color'] = map_data.apply(lambda x: risk_colors[x['risk_assessment']][1] + [150], axis=1)
 map_data['radius'] = map_data['risk_assessment'].apply(lambda x: risk_colors[x][2])
