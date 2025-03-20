@@ -66,16 +66,6 @@ st.markdown(
         width: 100%;
         padding: 0rem 0rem 0rem;
     }
-
-    .st-emotion-cache-0.e1f1d6gn0 {
-    height: 95vh;
-    }
-    .st-emotion-cache-1wmy9hl.e1f1d6gn1 {
-        height: 95vh;
-    }
-    .st-emotion-cache-0.elp1w7k0 {
-        height: 95vh;
-    }
     
     .stDeckGlJsonChart {
         height: 95vh !important; /* 將高度設置為視窗高度 */
@@ -131,6 +121,10 @@ filtered_df = filtered_df[(filtered_df['disease_name'] == selected_disease) | (s
 risk_options = list(risk_colors.keys())
 selected_risks = st.sidebar.multiselect("#### 🚨 選擇風險等級", risk_options, default=risk_options)
 filtered_df = filtered_df[filtered_df['risk_assessment'].isin(selected_risks)]
+
+if filtered_df.empty:
+    st.warning("⚠️ 找不到符合篩選條件的疫情資料，請調整篩選範圍！")
+    st.stop()
 
 # 處理 location 欄位
 location_data = []
