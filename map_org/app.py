@@ -122,10 +122,6 @@ risk_options = list(risk_colors.keys())
 selected_risks = st.sidebar.multiselect("#### 🚨 選擇風險等級", risk_options, default=risk_options)
 filtered_df = filtered_df[filtered_df['risk_assessment'].isin(selected_risks)]
 
-if filtered_df.empty:
-    st.warning("⚠️ 找不到符合篩選條件的疫情資料，請調整篩選範圍！")
-    st.stop()
-
 # 處理 location 欄位
 location_data = []
 for _, row in filtered_df.iterrows():
@@ -149,9 +145,12 @@ for _, row in filtered_df.iterrows():
             except ValueError:
                 continue
 
-print(location_data)
-
 map_data = pd.DataFrame(location_data)
+
+if map_data.empty:
+    st.warning("⚠️ 找不到符合篩選條件的疫情資料，請調整篩選範圍！")
+    st.stop()
+    
 today = datetime.now()
 map_data['weeks_ago'] = map_data['date'].apply(lambda x: (today - datetime.strptime(x, '%Y-%m-%d')).days // 7)
 map_data['color'] = map_data.apply(lambda x: risk_colors[x['risk_assessment']][1] + [150], axis=1)
