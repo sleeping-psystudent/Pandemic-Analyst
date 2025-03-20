@@ -103,8 +103,6 @@ conn = sqlite3.connect('map_org/disease_info.db')
 cursor = conn.cursor()
 df = pd.read_sql_query("SELECT * FROM disease_info", conn)
 
-print(df)
-
 # 風險顏色與 emoji 對應
 risk_colors = {
     'High Concern': ('🔴', [255, 0, 0], 150000),
@@ -156,6 +154,8 @@ for _, row in filtered_df.iterrows():
                 })
             except ValueError:
                 continue
+
+print(location_data)
 
 map_data = pd.DataFrame(location_data)
 today = datetime.now()
