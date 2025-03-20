@@ -150,58 +150,52 @@ map_data = pd.DataFrame(location_data)
 if map_data.empty:
     st.warning("⚠️ 找不到符合篩選條件的疫情資料，請調整篩選範圍！")
     st.stop()
-    
-today = datetime.now()
-map_data['weeks_ago'] = map_data['date'].apply(lambda x: (today - datetime.strptime(x, '%Y-%m-%d')).days // 7)
-map_data['color'] = map_data.apply(lambda x: risk_colors[x['risk_assessment']][1] + [150], axis=1)
-map_data['radius'] = map_data['risk_assessment'].apply(lambda x: risk_colors[x][2])
+else:
+    # 只有 map_data 不是空的，才渲染地圖
+    layer = pdk.Layer(
+        'ScatterplotLayer',
+        data=map_data,
+        get_position='[lon, lat]',
+        get_radius='radius',
+        get_fill_color='color',
+        pickable=True,
+        auto_highlight=True
+    )
 
-layer = pdk.Layer(
-    'ScatterplotLayer',
-    data=map_data,
-    get_position='[lon, lat]',
-    get_radius='radius',
-    get_fill_color='color',
-    pickable=True,
-    auto_highlight=True
-)
+    view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
 
-view_state = pdk.ViewState(latitude=25.09108, longitude=121.5598, zoom=3, pitch=0)
-# view_state = pdk.ViewState(height = 800, latitude=20, longitude=0, zoom=1, pitch=0)
+    r = pdk.Deck(
+        layers=[layer],
+        initial_view_state=view_state,
+        tooltip={
+            "style": {
+                "position": "relative",
+                "top": "-120px",
+                "left": "15px",
+                "max-width": "400px",
+                "font-size": "12px",
+                "opacity": 0.9
+            },
+            "html": """
+                <style>
+                  .small-gap {
+                      display: block;
+                      margin-top: 5px;
+                  }
+                </style>
+                <div id='custom-tooltip' class='tooltip'>
+                    <h2 style="margin-top: -3px;margin-bottom: 0px;">{emoji} {risk_assessment}</h2>
+                     <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 6px 0;margin-bottom: 10px;">
+                    <div>{summary}</div>
+                </div>
+            """
+        }
+    )
 
-r = pdk.Deck(
-    layers=[layer],
-    initial_view_state=view_state,
-    tooltip={
-        "style":{
-            "position": "relative",
-            "top": "-120px",
-            "left": "15px",
-            "max-width": "400px",
-            "font-size": "12px",
-            "opacity": 0.9
-        },
-        "html": """
-            <style>
-              .small-gap {
-                  display: block;
-                  margin-top: 5px;
-              }
-            </style>
-            <div id='custom-tooltip' class='tooltip'>
-                <h2 style="margin-top: -3px;margin-bottom: 0px;">{emoji} {risk_assessment}</h2>
-                 <small style="font-size: 10px;">|| 發布日期: {date} ({weeks_ago} 週前)</small><hr style="margin: 6px 0;margin-bottom: 10px;">
-                <div>{summary}</div>
-            </div>
-        """
-    }
-)
-
-# 顯示固定地圖
-st.markdown('<div class="map-container">', unsafe_allow_html=True)
-st.pydeck_chart(r)
-st.markdown('</div>', unsafe_allow_html=True)
-
+    # 顯示固定地圖
+    st.markdown('<div class="map-container">', unsafe_allow_html=True)
+    st.pydeck_chart(r)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # with st.expander("疫情資料表"):
 #     st.write("#### 📊 疫情資料表")
